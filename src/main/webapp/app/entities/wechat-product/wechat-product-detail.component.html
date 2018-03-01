@@ -1,0 +1,70 @@
+
+<div *ngIf="wechatProduct">
+    <h2><span>Wechat Product</span> {{wechatProduct.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Product Code</span></dt>
+        <dd>
+            <span>{{wechatProduct.productCode}}</span>
+        </dd>
+        <dt><span>Product Name</span></dt>
+        <dd>
+            <span>{{wechatProduct.productName}}</span>
+        </dd>
+        <dt><span>Meta Desc</span></dt>
+        <dd>
+            <span>{{wechatProduct.metaDesc}}</span>
+        </dd>
+        <dt><span>Image</span></dt>
+        <dd>
+            <span>{{wechatProduct.image}}</span>
+        </dd>
+        <dt><span>Original Price</span></dt>
+        <dd>
+            <span>{{wechatProduct.originalPrice}}</span>
+        </dd>
+        <dt><span>Price</span></dt>
+        <dd>
+            <span>{{wechatProduct.price}}</span>
+        </dd>
+        <dt><span>Platform Product</span></dt>
+        <dd>
+            <span>{{wechatProduct.platformProduct}}</span>
+        </dd>
+        <dt><span>Sell Out</span></dt>
+        <dd>
+            <span>{{wechatProduct.sellOut}}</span>
+        </dd>
+        <dt><span>Online</span></dt>
+        <dd>
+            <span>{{wechatProduct.online}}</span>
+        </dd>
+        <dt><span>Wechat User</span></dt>
+        <dd>
+            <div *ngIf="wechatProduct.wechatUserId">
+                <a [routerLink]="['/wechat-user', wechatProduct.wechatUserId]">{{wechatProduct.wechatUserId}}</a>
+            </div>
+        </dd>
+        <dt><span>Wechat Wish List</span></dt>
+        <dd>
+            <div *ngIf="wechatProduct.wechatWishListId">
+                <a [routerLink]="['/wechat-wish-list', wechatProduct.wechatWishListId]">{{wechatProduct.wechatWishListId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'wechat-product/'+ wechatProduct.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

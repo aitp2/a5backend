@@ -1,0 +1,52 @@
+
+<div *ngIf="wechatUser">
+    <h2><span>Wechat User</span> {{wechatUser.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Open Id</span></dt>
+        <dd>
+            <span>{{wechatUser.openId}}</span>
+        </dd>
+        <dt><span>Wechat Code</span></dt>
+        <dd>
+            <span>{{wechatUser.wechatCode}}</span>
+        </dd>
+        <dt><span>User Name</span></dt>
+        <dd>
+            <span>{{wechatUser.userName}}</span>
+        </dd>
+        <dt><span>Mobile Num</span></dt>
+        <dd>
+            <span>{{wechatUser.mobileNum}}</span>
+        </dd>
+        <dt><span>Project</span></dt>
+        <dd>
+            <span>{{wechatUser.project}}</span>
+        </dd>
+        <dt><span>Seat</span></dt>
+        <dd>
+            <span>{{wechatUser.seat}}</span>
+        </dd>
+        <dt><span>Wechat Wish List</span></dt>
+        <dd>
+            <div *ngIf="wechatUser.wechatWishListId">
+                <a [routerLink]="['/wechat-wish-list', wechatUser.wechatWishListId]">{{wechatUser.wechatWishListId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'wechat-user/'+ wechatUser.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

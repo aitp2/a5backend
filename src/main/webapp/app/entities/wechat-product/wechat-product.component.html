@@ -1,0 +1,94 @@
+<div>
+    <h2>
+        <span>Wechat Products</span>
+        <button class="btn btn-primary float-right jh-create-entity create-wechat-product" [routerLink]="['/', { outlets: { popup: ['wechat-product-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Wechat Product
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="wechatProducts">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="productCode"><span>Product Code</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="productName"><span>Product Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="metaDesc"><span>Meta Desc</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="image"><span>Image</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="originalPrice"><span>Original Price</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="price"><span>Price</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="platformProduct"><span>Platform Product</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="sellOut"><span>Sell Out</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="online"><span>Online</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="wechatUserId"><span>Wechat User</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="wechatWishListId"><span>Wechat Wish List</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let wechatProduct of wechatProducts ;trackBy: trackId">
+                <td><a [routerLink]="['../wechat-product', wechatProduct.id ]">{{wechatProduct.id}}</a></td>
+                <td>{{wechatProduct.productCode}}</td>
+                <td>{{wechatProduct.productName}}</td>
+                <td>{{wechatProduct.metaDesc}}</td>
+                <td>{{wechatProduct.image}}</td>
+                <td>{{wechatProduct.originalPrice}}</td>
+                <td>{{wechatProduct.price}}</td>
+                <td>{{wechatProduct.platformProduct}}</td>
+                <td>{{wechatProduct.sellOut}}</td>
+                <td>{{wechatProduct.online}}</td>
+                <td>
+                    <div *ngIf="wechatProduct.wechatUserId">
+                        <a [routerLink]="['../wechat-user', wechatProduct.wechatUserId  ]" >{{wechatProduct.wechatUserId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="wechatProduct.wechatWishListId">
+                        <a [routerLink]="['../wechat-wish-list', wechatProduct.wechatWishListId  ]" >{{wechatProduct.wechatWishListId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../wechat-product', wechatProduct.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'wechat-product/'+ wechatProduct.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'wechat-product/'+ wechatProduct.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="wechatProducts && wechatProducts.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

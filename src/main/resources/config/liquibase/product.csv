@@ -1,0 +1,6 @@
+id;product_code;product_name;meta_desc;image;original_price;price;platform_product;sell_out;online
+1;1519718782279;测试产品;测试产品1;/upload/tmp_90645c4b27b7d15c6bfe753828eec655.jpg;3500;2000;true;false;true
+2;1519718875569;测试产品2;测试产品2测试产品测试产品测试产品测试产品测试产品测试产品测试产品测试产品测试产品测试产品测试产品测试产品;/upload/tmp_14fa1f795bed9f3c126d8a66961d3e42.jpg;158;100;true;false;true
+3;1519718935480;测试产品3;测试产品3 desc;/upload/tmp_f4dfa2fa0a5556df572f71168c084f89.jpg;648;500;true;false;true
+4;1519719000593;测试产品4;测试产品4 desc;/upload/tmp_ef4c23c7ccff42288578fb855d76ac32.jpg;189;88;true;false;true
+5;1519719038638;测试产品5;测试产品5 desc;/upload/tmp_e2a6f12fa9bec76bd0ed00d1e7f44bdb.jpg;45;15;true;true;true

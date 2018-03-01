@@ -1,0 +1,81 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "wechatWishList",
+            "otherEntityName": "wechatWishList",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "wechatUser"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "wechatProducts",
+            "otherEntityName": "wechatProduct",
+            "otherEntityRelationshipName": "wechatUser"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "openId",
+            "javadoc": "微信openid",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "required"
+            ],
+            "fieldValidateRulesMaxlength": 255
+        },
+        {
+            "fieldName": "wechatCode",
+            "javadoc": "微信号",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 128
+        },
+        {
+            "fieldName": "userName",
+            "javadoc": "用户名",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 128
+        },
+        {
+            "fieldName": "mobileNum",
+            "javadoc": "手机号码",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 128
+        },
+        {
+            "fieldName": "project",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 128
+        },
+        {
+            "fieldName": "seat",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 128
+        }
+    ],
+    "changelogDate": "20180227104451",
+    "entityTableName": "wechat_user",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "enableEntityAudit": true
+}

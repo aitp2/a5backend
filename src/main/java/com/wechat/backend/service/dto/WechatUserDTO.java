@@ -1,0 +1,135 @@
+package com.wechat.backend.service.dto;
+
+
+import javax.validation.constraints.*;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Objects;
+
+/**
+ * A DTO for the WechatUser entity.
+ */
+public class WechatUserDTO extends AbstractAuditingDTO implements Serializable {
+
+    private Long id;
+
+    @NotNull
+    @Size(max = 255)
+    private String openId;
+
+    @Size(max = 128)
+    private String wechatCode;
+
+    @Size(max = 128)
+    private String userName;
+
+    @Size(max = 128)
+    private String mobileNum;
+
+    @Size(max = 128)
+    private String project;
+
+    @Size(max = 128)
+    private String seat;
+
+    private Long wechatWishListId;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getOpenId() {
+        return openId;
+    }
+
+    public void setOpenId(String openId) {
+        this.openId = openId;
+    }
+
+    public String getWechatCode() {
+        return wechatCode;
+    }
+
+    public void setWechatCode(String wechatCode) {
+        this.wechatCode = wechatCode;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getMobileNum() {
+        return mobileNum;
+    }
+
+    public void setMobileNum(String mobileNum) {
+        this.mobileNum = mobileNum;
+    }
+
+    public String getProject() {
+        return project;
+    }
+
+    public void setProject(String project) {
+        this.project = project;
+    }
+
+    public String getSeat() {
+        return seat;
+    }
+
+    public void setSeat(String seat) {
+        this.seat = seat;
+    }
+
+    public Long getWechatWishListId() {
+        return wechatWishListId;
+    }
+
+    public void setWechatWishListId(Long wechatWishListId) {
+        this.wechatWishListId = wechatWishListId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        WechatUserDTO wechatUserDTO = (WechatUserDTO) o;
+        if(wechatUserDTO.getId() == null || getId() == null) {
+            return false;
+        }
+        return Objects.equals(getId(), wechatUserDTO.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId());
+    }
+
+    @Override
+    public String toString() {
+        return "WechatUserDTO{" +
+            "id=" + getId() +
+            ", openId='" + getOpenId() + "'" +
+            ", wechatCode='" + getWechatCode() + "'" +
+            ", userName='" + getUserName() + "'" +
+            ", mobileNum='" + getMobileNum() + "'" +
+            ", project='" + getProject() + "'" +
+            ", seat='" + getSeat() + "'" +
+            "}";
+    }
+}

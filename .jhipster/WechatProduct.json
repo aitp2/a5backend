@@ -1,0 +1,90 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "wechatUser",
+            "otherEntityName": "wechatUser",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "wechatWishList",
+            "otherEntityName": "wechatWishList",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "productCode",
+            "javadoc": "产品编码，业务字段",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "required"
+            ],
+            "fieldValidateRulesMaxlength": 255
+        },
+        {
+            "fieldName": "productName",
+            "javadoc": "产品编码，业务字段",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "required"
+            ],
+            "fieldValidateRulesMaxlength": 255
+        },
+        {
+            "fieldName": "metaDesc",
+            "javadoc": "产品构成描述",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 255
+        },
+        {
+            "fieldName": "image",
+            "javadoc": "产品图片",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 1024
+        },
+        {
+            "fieldName": "originalPrice",
+            "javadoc": "原始价格",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "price",
+            "javadoc": "价格",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "platformProduct",
+            "javadoc": "是否为平台商品",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "sellOut",
+            "javadoc": "是否售罄",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "online",
+            "javadoc": "是否上线",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20180227104453",
+    "javadoc": "not an ignored comment",
+    "entityTableName": "wechat_product",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "enableEntityAudit": true
+}

@@ -1,0 +1,30 @@
+
+<div *ngIf="wechatOrder">
+    <h2><span>Wechat Order</span> {{wechatOrder.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Status</span></dt>
+        <dd>
+            <span>{{wechatOrder.status}}</span>
+        </dd>
+        <dt><span>Order Amount</span></dt>
+        <dd>
+            <span>{{wechatOrder.orderAmount}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'wechat-order/'+ wechatOrder.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>
