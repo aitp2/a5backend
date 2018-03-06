@@ -33,8 +33,6 @@ public class WechatUserDTO extends AbstractAuditingDTO implements Serializable {
     @Size(max = 128)
     private String seat;
 
-    private Long wechatWishListId;
-
     public Long getId() {
         return id;
     }
@@ -89,14 +87,6 @@ public class WechatUserDTO extends AbstractAuditingDTO implements Serializable {
 
     public void setSeat(String seat) {
         this.seat = seat;
-    }
-
-    public Long getWechatWishListId() {
-        return wechatWishListId;
-    }
-
-    public void setWechatWishListId(Long wechatWishListId) {
-        this.wechatWishListId = wechatWishListId;
     }
 
     @Override

@@ -4,13 +4,11 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
+import { JhiEventManager } from 'ng-jhipster';
 
 import { WechatUser } from './wechat-user.model';
 import { WechatUserPopupService } from './wechat-user-popup.service';
 import { WechatUserService } from './wechat-user.service';
-import { WechatWishList, WechatWishListService } from '../wechat-wish-list';
-import { ResponseWrapper } from '../../shared';
 
 @Component({
     selector: 'jhi-wechat-user-dialog',
@@ -21,32 +19,15 @@ export class WechatUserDialogComponent implements OnInit {
     wechatUser: WechatUser;
     isSaving: boolean;
 
-    wechatwishlists: WechatWishList[];
-
     constructor(
         public activeModal: NgbActiveModal,
-        private jhiAlertService: JhiAlertService,
         private wechatUserService: WechatUserService,
-        private wechatWishListService: WechatWishListService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
-        this.wechatWishListService
-            .query({filter: 'wechatuser-is-null'})
-            .subscribe((res: ResponseWrapper) => {
-                if (!this.wechatUser.wechatWishListId) {
-                    this.wechatwishlists = res.json;
-                } else {
-                    this.wechatWishListService
-                        .find(this.wechatUser.wechatWishListId)
-                        .subscribe((subRes: WechatWishList) => {
-                            this.wechatwishlists = [subRes].concat(res.json);
-                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
-                }
-            }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -77,14 +58,6 @@ export class WechatUserDialogComponent implements OnInit {
 
     private onSaveError() {
         this.isSaving = false;
-    }
-
-    private onError(error: any) {
-        this.jhiAlertService.error(error.message, null, null);
-    }
-
-    trackWechatWishListById(index: number, item: WechatWishList) {
-        return item.id;
     }
 }
 

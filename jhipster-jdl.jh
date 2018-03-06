@@ -7,13 +7,30 @@ entity WechatUser{
     userName String maxlength(128),
     /** 手机号码*/
     mobileNum String maxlength(128),
+    /** 项目名称*/
     project String maxlength(128),
+    /** 座位号*/
     seat String maxlength(128)
 }
 
 entity WechatOrder {
+	/** 订单状态*/
 	status String maxlength(3),
-    orderAmount BigDecimal,   
+    /** 订单总金额*/
+    orderAmount BigDecimal,
+    /** 购买者的ID*/
+    customerId Long
+}
+
+entity WechatOrderItem{
+	/** 价格 */
+    price BigDecimal,
+	/** 质量 */
+    quantity Integer ,
+	/** 零售价格 */
+    retailPrice BigDecimal ,
+	/** 商品Id */
+	productId Long
 }
 // an ignored comment
 /** not an ignored comment */
@@ -35,20 +52,39 @@ entity WechatProduct {
   /** 是否售罄*/
   sellOut Boolean,
   /** 是否上线*/
-  online Boolean
+  goLive Boolean
+  /** */
+  collectTimes Integer
 }
-/**
- * Task entity.
- * @author The JHipster team.
- */
-entity WechatWishList {
+entity WechatProductImage{
+	/** 图片地址*/
+	imageUrl String maxlength(2048),
+    /** 图片描述*/
+    imageDesc String maxlength(512),
+	/** 图片内容 base64 当图片服务器有了可删除*/
+    imageContent TextBlob
 }
-relationship OneToOne {
-   WechatUser{wechatWishList} to WechatWishList{wechatUser}
+entity CollectList {
+	userId Long
+}
+entity Message{
+	/** 留言内容*/
+	content String maxlength(512),
+    /** 关联到内容的ID，初步为产品的ID*/
+    relateTo Long,
+    /** 用户昵称*/
+	userName String maxlength(128),
+    /** 评论人的ID*/
+    userId Long
 }
 relationship OneToMany {
+   WechatOrder{wechatOrderItems} to WechatOrderItem{wechatOrder}
    WechatUser{wechatProducts} to WechatProduct
-   WechatWishList{wishListProducts} to WechatProduct
+   Message{feedbacks} to Message{question}
+   WechatProduct{images} to WechatProductImage
+}
+relationship ManyToMany {
+   CollectList{collectProducts} to WechatProduct
 }
 
 paginate * with infinite-scroll

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity CollectList.
+    -->
+    <changeSet id="20180302045014-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="collect_lists_id"
+                                 baseTableName="collect_list_collect_products"
+                                 constraintName="fk_collect_list_collect_products_collect_lists_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="collect_list"/>
+        <addForeignKeyConstraint baseColumnNames="collect_products_id"
+                                 baseTableName="collect_list_collect_products"
+                                 constraintName="fk_collect_list_collect_products_collect_products_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="wechat_product"/>
+        
+    </changeSet>
+</databaseChangeLog>

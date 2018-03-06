@@ -4,6 +4,7 @@ import com.wechat.backend.domain.WechatProduct;
 import com.wechat.backend.repository.WechatProductRepository;
 import com.wechat.backend.service.dto.WechatProductDTO;
 import com.wechat.backend.service.mapper.WechatProductMapper;
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -52,6 +53,12 @@ public class WechatProductService {
     @Transactional(readOnly = true)
     public Page<WechatProductDTO> findAll(Pageable pageable) {
         log.debug("Request to get all WechatProducts");
+        Page<WechatProduct> producuts = wechatProductRepository.findAll(pageable);
+        for(WechatProduct product:producuts){
+            if(!Hibernate.isInitialized(product.getImages())){
+               Hibernate.initialize(product.getImages());
+            }
+        }
         return wechatProductRepository.findAll(pageable)
             .map(wechatProductMapper::toDto);
     }

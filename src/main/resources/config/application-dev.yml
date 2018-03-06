@@ -142,7 +142,8 @@ jhipster:
 
 application:
     wx:
-        appId: wx83e14f0011b6c046
-        appSecret: f863bf38bf3f438af82128c05fd320b1
-        oauthUri: https://api.weixin.qq.com/sns/jscode2session?appid=APPID&secret=SECRET&js_code=JSCODE&grant_type=authorization_code
+           appId: wxaab4332431f55081
+           appSecret: 9e44b541be3271bc6fd00f3217645651
+           oauthUri: https://api.weixin.qq.com/sns/jscode2session?appid=APPID&secret=SECRET&js_code=JSCODE&grant_type=authorization_code
+
 

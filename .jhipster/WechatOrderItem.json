@@ -1,0 +1,39 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "wechatOrder",
+            "otherEntityName": "wechatOrder",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "price",
+            "javadoc": "价格",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "quantity",
+            "javadoc": "质量",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "retailPrice",
+            "javadoc": "零售价格",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "productId",
+            "javadoc": "商品Id",
+            "fieldType": "Long"
+        }
+    ],
+    "changelogDate": "20180302045012",
+    "entityTableName": "wechat_order_item",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false
+}

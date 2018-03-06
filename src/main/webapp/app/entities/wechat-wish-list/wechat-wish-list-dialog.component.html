@@ -13,6 +13,12 @@
                    [(ngModel)]="wechatWishList.id" readonly />
         </div>
 
+        <div class="form-group">
+            <label for="field_wishListProducts">Wish List Products</label>
+            <select class="form-control" id="field_wishListProducts" multiple name="wishListProducts" [(ngModel)]="wechatWishList.wishListProducts">
+                <option [ngValue]="getSelected(wechatWishList.wishListProducts, wechatProductOption)" *ngFor="let wechatProductOption of wechatproducts; trackBy: trackWechatProductById">{{wechatProductOption.id}}</option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

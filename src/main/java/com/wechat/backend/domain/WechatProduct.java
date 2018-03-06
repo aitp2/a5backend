@@ -1,5 +1,6 @@
 package com.wechat.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -8,6 +9,8 @@ import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -90,14 +93,17 @@ public class WechatProduct extends AbstractAuditingEntity implements Serializabl
      * 是否上线
      */
     @ApiModelProperty(value = "是否上线")
-    @Column(name = "online")
-    private Boolean online;
+    @Column(name = "go_live")
+    private Boolean goLive;
+
+    @Column(name = "collect_times")
+    private Integer collectTimes;
 
     @ManyToOne
     private WechatUser wechatUser;
 
-    @ManyToOne
-    private WechatWishList wechatWishList;
+    @OneToMany(mappedBy = "wechatProduct")
+    private Set<WechatProductImage> images = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -212,17 +218,30 @@ public class WechatProduct extends AbstractAuditingEntity implements Serializabl
         this.sellOut = sellOut;
     }
 
-    public Boolean isOnline() {
-        return online;
+    public Boolean isGoLive() {
+        return goLive;
     }
 
-    public WechatProduct online(Boolean online) {
-        this.online = online;
+    public WechatProduct goLive(Boolean goLive) {
+        this.goLive = goLive;
         return this;
     }
 
-    public void setOnline(Boolean online) {
-        this.online = online;
+    public void setGoLive(Boolean goLive) {
+        this.goLive = goLive;
+    }
+
+    public Integer getCollectTimes() {
+        return collectTimes;
+    }
+
+    public WechatProduct collectTimes(Integer collectTimes) {
+        this.collectTimes = collectTimes;
+        return this;
+    }
+
+    public void setCollectTimes(Integer collectTimes) {
+        this.collectTimes = collectTimes;
     }
 
     public WechatUser getWechatUser() {
@@ -238,17 +257,29 @@ public class WechatProduct extends AbstractAuditingEntity implements Serializabl
         this.wechatUser = wechatUser;
     }
 
-    public WechatWishList getWechatWishList() {
-        return wechatWishList;
+    public Set<WechatProductImage> getImages() {
+        return images;
     }
 
-    public WechatProduct wechatWishList(WechatWishList wechatWishList) {
-        this.wechatWishList = wechatWishList;
+    public WechatProduct images(Set<WechatProductImage> wechatProductImages) {
+        this.images = wechatProductImages;
         return this;
     }
 
-    public void setWechatWishList(WechatWishList wechatWishList) {
-        this.wechatWishList = wechatWishList;
+    public WechatProduct addImages(WechatProductImage wechatProductImage) {
+        this.images.add(wechatProductImage);
+        wechatProductImage.setWechatProduct(this);
+        return this;
+    }
+
+    public WechatProduct removeImages(WechatProductImage wechatProductImage) {
+        this.images.remove(wechatProductImage);
+        wechatProductImage.setWechatProduct(null);
+        return this;
+    }
+
+    public void setImages(Set<WechatProductImage> wechatProductImages) {
+        this.images = wechatProductImages;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -284,7 +315,8 @@ public class WechatProduct extends AbstractAuditingEntity implements Serializabl
             ", price=" + getPrice() +
             ", platformProduct='" + isPlatformProduct() + "'" +
             ", sellOut='" + isSellOut() + "'" +
-            ", online='" + isOnline() + "'" +
+            ", goLive='" + isGoLive() + "'" +
+            ", collectTimes=" + getCollectTimes() +
             "}";
     }
 }

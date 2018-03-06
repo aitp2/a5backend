@@ -1,0 +1,52 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myWechatOrderItemLabel">Create or edit a Wechat Order Item</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!wechatOrderItem.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="wechatOrderItem.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_price">Price</label>
+            <input type="number" class="form-control" name="price" id="field_price"
+                [(ngModel)]="wechatOrderItem.price" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_quantity">Quantity</label>
+            <input type="number" class="form-control" name="quantity" id="field_quantity"
+                [(ngModel)]="wechatOrderItem.quantity" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_retailPrice">Retail Price</label>
+            <input type="number" class="form-control" name="retailPrice" id="field_retailPrice"
+                [(ngModel)]="wechatOrderItem.retailPrice" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_productId">Product Id</label>
+            <input type="number" class="form-control" name="productId" id="field_productId"
+                [(ngModel)]="wechatOrderItem.productId" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_wechatOrder">Wechat Order</label>
+            <select class="form-control" id="field_wechatOrder" name="wechatOrder" [(ngModel)]="wechatOrderItem.wechatOrderId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="wechatOrderOption.id" *ngFor="let wechatOrderOption of wechatorders; trackBy: trackWechatOrderById">{{wechatOrderOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

@@ -5,13 +5,20 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180227104451_added_entity_WechatUser.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180227104452_added_entity_WechatOrder.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180227104453_added_entity_WechatProduct.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180227104454_added_entity_WechatWishList.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180228015224_added_entity_EntityAuditEvent.xml" relativeToChangelogFile="false"/>
-    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
-    <include file="config/liquibase/changelog/20180227104451_added_entity_constraints_WechatUser.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180227104453_added_entity_constraints_WechatProduct.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180302045010_added_entity_WechatUser.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180302045011_added_entity_WechatOrder.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180302045012_added_entity_WechatOrderItem.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180302045013_added_entity_WechatProduct.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180302045014_added_entity_CollectList.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180302045015_added_entity_Message.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180302045247_added_entity_EntityAuditEvent.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180305031111_added_entity_WechatProductImage.xml" relativeToChangelogFile="false"/>
+
+
+    <include file="config/liquibase/changelog/20180302045012_added_entity_constraints_WechatOrderItem.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180302045013_added_entity_constraints_WechatProduct.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180302045014_added_entity_constraints_CollectList.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180302045015_added_entity_constraints_Message.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180305031111_added_entity_constraints_WechatProductImage.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

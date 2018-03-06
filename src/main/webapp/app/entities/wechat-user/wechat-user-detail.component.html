@@ -28,12 +28,6 @@
         <dd>
             <span>{{wechatUser.seat}}</span>
         </dd>
-        <dt><span>Wechat Wish List</span></dt>
-        <dd>
-            <div *ngIf="wechatUser.wechatWishListId">
-                <a [routerLink]="['/wechat-wish-list', wechatUser.wechatWishListId]">{{wechatUser.wechatWishListId}}</a>
-            </div>
-        </dd>
     </dl>
 
     <button type="submit"

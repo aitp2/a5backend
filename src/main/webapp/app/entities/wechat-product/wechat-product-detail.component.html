@@ -36,20 +36,18 @@
         <dd>
             <span>{{wechatProduct.sellOut}}</span>
         </dd>
-        <dt><span>Online</span></dt>
+        <dt><span>Go Live</span></dt>
         <dd>
-            <span>{{wechatProduct.online}}</span>
+            <span>{{wechatProduct.goLive}}</span>
+        </dd>
+        <dt><span>Collect Times</span></dt>
+        <dd>
+            <span>{{wechatProduct.collectTimes}}</span>
         </dd>
         <dt><span>Wechat User</span></dt>
         <dd>
             <div *ngIf="wechatProduct.wechatUserId">
                 <a [routerLink]="['/wechat-user', wechatProduct.wechatUserId]">{{wechatProduct.wechatUserId}}</a>
-            </div>
-        </dd>
-        <dt><span>Wechat Wish List</span></dt>
-        <dd>
-            <div *ngIf="wechatProduct.wechatWishListId">
-                <a [routerLink]="['/wechat-wish-list', wechatProduct.wechatWishListId]">{{wechatProduct.wechatWishListId}}</a>
             </div>
         </dd>
     </dl>

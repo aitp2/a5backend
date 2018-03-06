@@ -9,6 +9,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { WechatWishList } from './wechat-wish-list.model';
 import { WechatWishListPopupService } from './wechat-wish-list-popup.service';
 import { WechatWishListService } from './wechat-wish-list.service';
+import { WechatProduct, WechatProductService } from '../wechat-product';
 import { WechatUser, WechatUserService } from '../wechat-user';
 import { ResponseWrapper } from '../../shared';
 
@@ -21,12 +22,15 @@ export class WechatWishListDialogComponent implements OnInit {
     wechatWishList: WechatWishList;
     isSaving: boolean;
 
+    wechatproducts: WechatProduct[];
+
     wechatusers: WechatUser[];
 
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private wechatWishListService: WechatWishListService,
+        private wechatProductService: WechatProductService,
         private wechatUserService: WechatUserService,
         private eventManager: JhiEventManager
     ) {
@@ -34,6 +38,8 @@ export class WechatWishListDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
+        this.wechatProductService.query()
+            .subscribe((res: ResponseWrapper) => { this.wechatproducts = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.wechatUserService.query()
             .subscribe((res: ResponseWrapper) => { this.wechatusers = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
@@ -72,8 +78,23 @@ export class WechatWishListDialogComponent implements OnInit {
         this.jhiAlertService.error(error.message, null, null);
     }
 
+    trackWechatProductById(index: number, item: WechatProduct) {
+        return item.id;
+    }
+
     trackWechatUserById(index: number, item: WechatUser) {
         return item.id;
+    }
+
+    getSelected(selectedVals: Array<any>, option: any) {
+        if (selectedVals) {
+            for (let i = 0; i < selectedVals.length; i++) {
+                if (option.id === selectedVals[i].id) {
+                    return selectedVals[i];
+                }
+            }
+        }
+        return option;
     }
 }
 

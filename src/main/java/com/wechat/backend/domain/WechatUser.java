@@ -57,17 +57,21 @@ public class WechatUser extends AbstractAuditingEntity implements Serializable {
     @Column(name = "mobile_num", length = 128)
     private String mobileNum;
 
+    /**
+     * 项目名称
+     */
     @Size(max = 128)
+    @ApiModelProperty(value = "项目名称")
     @Column(name = "project", length = 128)
     private String project;
 
+    /**
+     * 座位号
+     */
     @Size(max = 128)
+    @ApiModelProperty(value = "座位号")
     @Column(name = "seat", length = 128)
     private String seat;
-
-    @OneToOne
-    @JoinColumn(unique = true)
-    private WechatWishList wechatWishList;
 
     @OneToMany(mappedBy = "wechatUser")
     @JsonIgnore
@@ -158,19 +162,6 @@ public class WechatUser extends AbstractAuditingEntity implements Serializable {
 
     public void setSeat(String seat) {
         this.seat = seat;
-    }
-
-    public WechatWishList getWechatWishList() {
-        return wechatWishList;
-    }
-
-    public WechatUser wechatWishList(WechatWishList wechatWishList) {
-        this.wechatWishList = wechatWishList;
-        return this;
-    }
-
-    public void setWechatWishList(WechatWishList wechatWishList) {
-        this.wechatWishList = wechatWishList;
     }
 
     public Set<WechatProduct> getWechatProducts() {

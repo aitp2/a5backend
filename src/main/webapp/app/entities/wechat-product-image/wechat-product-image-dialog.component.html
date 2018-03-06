@@ -1,0 +1,59 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myWechatProductImageLabel">Create or edit a Wechat Product Image</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!wechatProductImage.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="wechatProductImage.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_imageUrl">Image Url</label>
+            <input type="text" class="form-control" name="imageUrl" id="field_imageUrl"
+                [(ngModel)]="wechatProductImage.imageUrl" maxlength="2048"/>
+            <div [hidden]="!(editForm.controls.imageUrl?.dirty && editForm.controls.imageUrl?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.imageUrl?.errors?.maxlength">
+                   This field cannot be longer than 2048 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_imageDesc">Image Desc</label>
+            <input type="text" class="form-control" name="imageDesc" id="field_imageDesc"
+                [(ngModel)]="wechatProductImage.imageDesc" maxlength="512"/>
+            <div [hidden]="!(editForm.controls.imageDesc?.dirty && editForm.controls.imageDesc?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.imageDesc?.errors?.maxlength">
+                   This field cannot be longer than 512 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_imageContent">Image Content</label>
+            <textarea class="form-control" name="imageContent" id="field_imageContent"
+                [(ngModel)]="wechatProductImage.imageContent" ></textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_wechatProduct">Wechat Product</label>
+            <select class="form-control" id="field_wechatProduct" name="wechatProduct" [(ngModel)]="wechatProductImage.wechatProductId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="wechatProductOption.id" *ngFor="let wechatProductOption of wechatproducts; trackBy: trackWechatProductById">{{wechatProductOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

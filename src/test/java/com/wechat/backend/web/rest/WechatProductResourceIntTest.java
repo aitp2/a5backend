@@ -66,8 +66,11 @@ public class WechatProductResourceIntTest {
     private static final Boolean DEFAULT_SELL_OUT = false;
     private static final Boolean UPDATED_SELL_OUT = true;
 
-    private static final Boolean DEFAULT_ONLINE = false;
-    private static final Boolean UPDATED_ONLINE = true;
+    private static final Boolean DEFAULT_GO_LIVE = false;
+    private static final Boolean UPDATED_GO_LIVE = true;
+
+    private static final Integer DEFAULT_COLLECT_TIMES = 1;
+    private static final Integer UPDATED_COLLECT_TIMES = 2;
 
     @Autowired
     private WechatProductRepository wechatProductRepository;
@@ -121,7 +124,8 @@ public class WechatProductResourceIntTest {
             .price(DEFAULT_PRICE)
             .platformProduct(DEFAULT_PLATFORM_PRODUCT)
             .sellOut(DEFAULT_SELL_OUT)
-            .online(DEFAULT_ONLINE);
+            .goLive(DEFAULT_GO_LIVE)
+            .collectTimes(DEFAULT_COLLECT_TIMES);
         return wechatProduct;
     }
 
@@ -154,7 +158,8 @@ public class WechatProductResourceIntTest {
         assertThat(testWechatProduct.getPrice()).isEqualTo(DEFAULT_PRICE);
         assertThat(testWechatProduct.isPlatformProduct()).isEqualTo(DEFAULT_PLATFORM_PRODUCT);
         assertThat(testWechatProduct.isSellOut()).isEqualTo(DEFAULT_SELL_OUT);
-        assertThat(testWechatProduct.isOnline()).isEqualTo(DEFAULT_ONLINE);
+        assertThat(testWechatProduct.isGoLive()).isEqualTo(DEFAULT_GO_LIVE);
+        assertThat(testWechatProduct.getCollectTimes()).isEqualTo(DEFAULT_COLLECT_TIMES);
     }
 
     @Test
@@ -234,7 +239,8 @@ public class WechatProductResourceIntTest {
             .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.intValue())))
             .andExpect(jsonPath("$.[*].platformProduct").value(hasItem(DEFAULT_PLATFORM_PRODUCT.booleanValue())))
             .andExpect(jsonPath("$.[*].sellOut").value(hasItem(DEFAULT_SELL_OUT.booleanValue())))
-            .andExpect(jsonPath("$.[*].online").value(hasItem(DEFAULT_ONLINE.booleanValue())));
+            .andExpect(jsonPath("$.[*].goLive").value(hasItem(DEFAULT_GO_LIVE.booleanValue())))
+            .andExpect(jsonPath("$.[*].collectTimes").value(hasItem(DEFAULT_COLLECT_TIMES)));
     }
 
     @Test
@@ -256,7 +262,8 @@ public class WechatProductResourceIntTest {
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.intValue()))
             .andExpect(jsonPath("$.platformProduct").value(DEFAULT_PLATFORM_PRODUCT.booleanValue()))
             .andExpect(jsonPath("$.sellOut").value(DEFAULT_SELL_OUT.booleanValue()))
-            .andExpect(jsonPath("$.online").value(DEFAULT_ONLINE.booleanValue()));
+            .andExpect(jsonPath("$.goLive").value(DEFAULT_GO_LIVE.booleanValue()))
+            .andExpect(jsonPath("$.collectTimes").value(DEFAULT_COLLECT_TIMES));
     }
 
     @Test
@@ -287,7 +294,8 @@ public class WechatProductResourceIntTest {
             .price(UPDATED_PRICE)
             .platformProduct(UPDATED_PLATFORM_PRODUCT)
             .sellOut(UPDATED_SELL_OUT)
-            .online(UPDATED_ONLINE);
+            .goLive(UPDATED_GO_LIVE)
+            .collectTimes(UPDATED_COLLECT_TIMES);
         WechatProductDTO wechatProductDTO = wechatProductMapper.toDto(updatedWechatProduct);
 
         restWechatProductMockMvc.perform(put("/api/wechat-products")
@@ -307,7 +315,8 @@ public class WechatProductResourceIntTest {
         assertThat(testWechatProduct.getPrice()).isEqualTo(UPDATED_PRICE);
         assertThat(testWechatProduct.isPlatformProduct()).isEqualTo(UPDATED_PLATFORM_PRODUCT);
         assertThat(testWechatProduct.isSellOut()).isEqualTo(UPDATED_SELL_OUT);
-        assertThat(testWechatProduct.isOnline()).isEqualTo(UPDATED_ONLINE);
+        assertThat(testWechatProduct.isGoLive()).isEqualTo(UPDATED_GO_LIVE);
+        assertThat(testWechatProduct.getCollectTimes()).isEqualTo(UPDATED_COLLECT_TIMES);
     }
 
     @Test

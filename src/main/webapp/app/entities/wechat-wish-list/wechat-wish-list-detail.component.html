@@ -4,6 +4,12 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
+        <dt><span>Wish List Products</span></dt>
+        <dd>
+            <span *ngFor="let wishListProducts of wechatWishList.wishListProducts; let last = last">
+                <a [routerLink]="['/wechat-product', wishListProducts?.id ]">{{wishListProducts.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
     </dl>
 
     <button type="submit"

@@ -85,9 +85,14 @@
                 [(ngModel)]="wechatProduct.sellOut" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" for="field_online">Online</label>
-            <input type="checkbox" class="form-control" name="online" id="field_online"
-                [(ngModel)]="wechatProduct.online" />
+            <label class="form-control-label" for="field_goLive">Go Live</label>
+            <input type="checkbox" class="form-control" name="goLive" id="field_goLive"
+                [(ngModel)]="wechatProduct.goLive" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_collectTimes">Collect Times</label>
+            <input type="number" class="form-control" name="collectTimes" id="field_collectTimes"
+                [(ngModel)]="wechatProduct.collectTimes" />
         </div>
 
         <div class="form-group">
@@ -95,13 +100,6 @@
             <select class="form-control" id="field_wechatUser" name="wechatUser" [(ngModel)]="wechatProduct.wechatUserId" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="wechatUserOption.id" *ngFor="let wechatUserOption of wechatusers; trackBy: trackWechatUserById">{{wechatUserOption.id}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" for="field_wechatWishList">Wechat Wish List</label>
-            <select class="form-control" id="field_wechatWishList" name="wechatWishList" [(ngModel)]="wechatProduct.wechatWishListId" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="wechatWishListOption.id" *ngFor="let wechatWishListOption of wechatwishlists; trackBy: trackWechatWishListById">{{wechatWishListOption.id}}</option>
             </select>
         </div>
     </div>

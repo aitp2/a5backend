@@ -25,9 +25,9 @@
             <th jhiSortBy="price"><span>Price</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="platformProduct"><span>Platform Product</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="sellOut"><span>Sell Out</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="online"><span>Online</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="goLive"><span>Go Live</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="collectTimes"><span>Collect Times</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="wechatUserId"><span>Wechat User</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="wechatWishListId"><span>Wechat Wish List</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -42,15 +42,11 @@
                 <td>{{wechatProduct.price}}</td>
                 <td>{{wechatProduct.platformProduct}}</td>
                 <td>{{wechatProduct.sellOut}}</td>
-                <td>{{wechatProduct.online}}</td>
+                <td>{{wechatProduct.goLive}}</td>
+                <td>{{wechatProduct.collectTimes}}</td>
                 <td>
                     <div *ngIf="wechatProduct.wechatUserId">
                         <a [routerLink]="['../wechat-user', wechatProduct.wechatUserId  ]" >{{wechatProduct.wechatUserId}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="wechatProduct.wechatWishListId">
-                        <a [routerLink]="['../wechat-wish-list', wechatProduct.wechatWishListId  ]" >{{wechatProduct.wechatWishListId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

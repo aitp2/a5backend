@@ -8,7 +8,6 @@ import { A5BackendTestModule } from '../../../test.module';
 import { WechatUserDialogComponent } from '../../../../../../main/webapp/app/entities/wechat-user/wechat-user-dialog.component';
 import { WechatUserService } from '../../../../../../main/webapp/app/entities/wechat-user/wechat-user.service';
 import { WechatUser } from '../../../../../../main/webapp/app/entities/wechat-user/wechat-user.model';
-import { WechatWishListService } from '../../../../../../main/webapp/app/entities/wechat-wish-list';
 
 describe('Component Tests', () => {
 
@@ -24,7 +23,6 @@ describe('Component Tests', () => {
                 imports: [A5BackendTestModule],
                 declarations: [WechatUserDialogComponent],
                 providers: [
-                    WechatWishListService,
                     WechatUserService
                 ]
             })

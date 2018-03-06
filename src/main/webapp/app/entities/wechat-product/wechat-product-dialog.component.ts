@@ -10,7 +10,6 @@ import { WechatProduct } from './wechat-product.model';
 import { WechatProductPopupService } from './wechat-product-popup.service';
 import { WechatProductService } from './wechat-product.service';
 import { WechatUser, WechatUserService } from '../wechat-user';
-import { WechatWishList, WechatWishListService } from '../wechat-wish-list';
 import { ResponseWrapper } from '../../shared';
 
 @Component({
@@ -24,14 +23,11 @@ export class WechatProductDialogComponent implements OnInit {
 
     wechatusers: WechatUser[];
 
-    wechatwishlists: WechatWishList[];
-
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private wechatProductService: WechatProductService,
         private wechatUserService: WechatUserService,
-        private wechatWishListService: WechatWishListService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -40,8 +36,6 @@ export class WechatProductDialogComponent implements OnInit {
         this.isSaving = false;
         this.wechatUserService.query()
             .subscribe((res: ResponseWrapper) => { this.wechatusers = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
-        this.wechatWishListService.query()
-            .subscribe((res: ResponseWrapper) => { this.wechatwishlists = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -79,10 +73,6 @@ export class WechatProductDialogComponent implements OnInit {
     }
 
     trackWechatUserById(index: number, item: WechatUser) {
-        return item.id;
-    }
-
-    trackWechatWishListById(index: number, item: WechatWishList) {
         return item.id;
     }
 }

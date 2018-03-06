@@ -1,0 +1,40 @@
+
+<div *ngIf="wechatProductImage">
+    <h2><span>Wechat Product Image</span> {{wechatProductImage.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Image Url</span></dt>
+        <dd>
+            <span>{{wechatProductImage.imageUrl}}</span>
+        </dd>
+        <dt><span>Image Desc</span></dt>
+        <dd>
+            <span>{{wechatProductImage.imageDesc}}</span>
+        </dd>
+        <dt><span>Image Content</span></dt>
+        <dd>
+            <span>{{wechatProductImage.imageContent}}</span>
+        </dd>
+        <dt><span>Wechat Product</span></dt>
+        <dd>
+            <div *ngIf="wechatProductImage.wechatProductId">
+                <a [routerLink]="['/wechat-product', wechatProductImage.wechatProductId]">{{wechatProductImage.wechatProductId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'wechat-product-image/'+ wechatProductImage.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

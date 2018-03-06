@@ -1,0 +1,78 @@
+<div>
+    <h2>
+        <span>Wechat Order Items</span>
+        <button class="btn btn-primary float-right jh-create-entity create-wechat-order-item" [routerLink]="['/', { outlets: { popup: ['wechat-order-item-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Wechat Order Item
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="wechatOrderItems">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="price"><span>Price</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="quantity"><span>Quantity</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="retailPrice"><span>Retail Price</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="productId"><span>Product Id</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="wechatOrderId"><span>Wechat Order</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let wechatOrderItem of wechatOrderItems ;trackBy: trackId">
+                <td><a [routerLink]="['../wechat-order-item', wechatOrderItem.id ]">{{wechatOrderItem.id}}</a></td>
+                <td>{{wechatOrderItem.price}}</td>
+                <td>{{wechatOrderItem.quantity}}</td>
+                <td>{{wechatOrderItem.retailPrice}}</td>
+                <td>{{wechatOrderItem.productId}}</td>
+                <td>
+                    <div *ngIf="wechatOrderItem.wechatOrderId">
+                        <a [routerLink]="['../wechat-order', wechatOrderItem.wechatOrderId  ]" >{{wechatOrderItem.wechatOrderId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../wechat-order-item', wechatOrderItem.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'wechat-order-item/'+ wechatOrderItem.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'wechat-order-item/'+ wechatOrderItem.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="wechatOrderItems && wechatOrderItems.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

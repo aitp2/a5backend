@@ -1,4 +1,4 @@
-id;product_code;product_name;meta_desc;image;original_price;price;platform_product;sell_out;online
+id;product_code;product_name;meta_desc;image;original_price;price;platform_product;sell_out;go_live
 1;1519718782279;测试产品;测试产品1;/upload/tmp_90645c4b27b7d15c6bfe753828eec655.jpg;3500;2000;true;false;true
 2;1519718875569;测试产品2;测试产品2测试产品测试产品测试产品测试产品测试产品测试产品测试产品测试产品测试产品测试产品测试产品测试产品;/upload/tmp_14fa1f795bed9f3c126d8a66961d3e42.jpg;158;100;true;false;true
 3;1519718935480;测试产品3;测试产品3 desc;/upload/tmp_f4dfa2fa0a5556df572f71168c084f89.jpg;648;500;true;false;true

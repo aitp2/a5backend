@@ -4,6 +4,8 @@ package com.wechat.backend.service.dto;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -17,6 +19,8 @@ public class WechatOrderDTO extends AbstractAuditingDTO implements Serializable 
     private String status;
 
     private BigDecimal orderAmount;
+
+    private Long customerId;
 
     public Long getId() {
         return id;
@@ -40,6 +44,14 @@ public class WechatOrderDTO extends AbstractAuditingDTO implements Serializable 
 
     public void setOrderAmount(BigDecimal orderAmount) {
         this.orderAmount = orderAmount;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
     @Override
@@ -69,6 +81,7 @@ public class WechatOrderDTO extends AbstractAuditingDTO implements Serializable 
             "id=" + getId() +
             ", status='" + getStatus() + "'" +
             ", orderAmount=" + getOrderAmount() +
+            ", customerId=" + getCustomerId() +
             "}";
     }
 }

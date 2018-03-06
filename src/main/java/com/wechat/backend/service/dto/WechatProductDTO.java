@@ -37,11 +37,21 @@ public class WechatProductDTO extends AbstractAuditingDTO implements Serializabl
 
     private Boolean sellOut;
 
-    private Boolean online;
+    private Boolean goLive;
+
+    private Integer collectTimes;
 
     private Long wechatUserId;
 
-    private Long wechatWishListId;
+    public Set<WechatProductImageDTO> getImages() {
+        return images;
+    }
+
+    public void setImages(Set<WechatProductImageDTO> images) {
+        this.images = images;
+    }
+
+    private Set<WechatProductImageDTO> images;
 
     public Long getId() {
         return id;
@@ -115,12 +125,20 @@ public class WechatProductDTO extends AbstractAuditingDTO implements Serializabl
         this.sellOut = sellOut;
     }
 
-    public Boolean isOnline() {
-        return online;
+    public Boolean isGoLive() {
+        return goLive;
     }
 
-    public void setOnline(Boolean online) {
-        this.online = online;
+    public void setGoLive(Boolean goLive) {
+        this.goLive = goLive;
+    }
+
+    public Integer getCollectTimes() {
+        return collectTimes;
+    }
+
+    public void setCollectTimes(Integer collectTimes) {
+        this.collectTimes = collectTimes;
     }
 
     public Long getWechatUserId() {
@@ -129,14 +147,6 @@ public class WechatProductDTO extends AbstractAuditingDTO implements Serializabl
 
     public void setWechatUserId(Long wechatUserId) {
         this.wechatUserId = wechatUserId;
-    }
-
-    public Long getWechatWishListId() {
-        return wechatWishListId;
-    }
-
-    public void setWechatWishListId(Long wechatWishListId) {
-        this.wechatWishListId = wechatWishListId;
     }
 
     @Override
@@ -172,7 +182,8 @@ public class WechatProductDTO extends AbstractAuditingDTO implements Serializabl
             ", price=" + getPrice() +
             ", platformProduct='" + isPlatformProduct() + "'" +
             ", sellOut='" + isSellOut() + "'" +
-            ", online='" + isOnline() + "'" +
+            ", goLive='" + isGoLive() + "'" +
+            ", collectTimes=" + getCollectTimes() +
             "}";
     }
 }

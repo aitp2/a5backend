@@ -11,8 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
-
 
 /**
  * Service Implementation for managing WechatUser.
@@ -80,8 +78,7 @@ public class WechatUserService {
         log.debug("Request to delete WechatUser : {}", id);
         wechatUserRepository.delete(id);
     }
-    public WechatUserDTO findOneByOpenId(String openId){
+   public WechatUserDTO findOneByOpenId(String openId){
         WechatUser wechatUser = wechatUserRepository.findOneByOpenId(openId);
         return wechatUser!=null?wechatUserMapper.toDto(wechatUser) : null;
-    }
-}
+    }}

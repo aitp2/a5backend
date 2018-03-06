@@ -8,10 +8,10 @@
             "otherEntityField": "id"
         },
         {
-            "relationshipName": "wechatWishList",
-            "otherEntityName": "wechatWishList",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "relationshipType": "one-to-many",
+            "relationshipName": "images",
+            "otherEntityName": "wechatProductImage",
+            "otherEntityRelationshipName": "wechatProduct"
         }
     ],
     "fields": [
@@ -74,12 +74,16 @@
             "fieldType": "Boolean"
         },
         {
-            "fieldName": "online",
+            "fieldName": "goLive",
             "javadoc": "是否上线",
             "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "collectTimes",
+            "fieldType": "Integer"
         }
     ],
-    "changelogDate": "20180227104453",
+    "changelogDate": "20180302045013",
     "javadoc": "not an ignored comment",
     "entityTableName": "wechat_product",
     "dto": "mapstruct",

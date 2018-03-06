@@ -12,6 +12,8 @@ import org.mapstruct.*;
 public interface WechatOrderMapper extends EntityMapper<WechatOrderDTO, WechatOrder> {
 
 
+    @Mapping(target = "wechatOrderItems", ignore = true)
+    WechatOrder toEntity(WechatOrderDTO wechatOrderDTO);
 
     default WechatOrder fromId(Long id) {
         if (id == null) {

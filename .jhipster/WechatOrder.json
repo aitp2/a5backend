@@ -1,9 +1,17 @@
 {
     "fluentMethods": true,
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "wechatOrderItems",
+            "otherEntityName": "wechatOrderItem",
+            "otherEntityRelationshipName": "wechatOrder"
+        }
+    ],
     "fields": [
         {
             "fieldName": "status",
+            "javadoc": "订单状态",
             "fieldType": "String",
             "fieldValidateRules": [
                 "maxlength"
@@ -12,10 +20,16 @@
         },
         {
             "fieldName": "orderAmount",
+            "javadoc": "订单总金额",
             "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "customerId",
+            "javadoc": "购买者的ID",
+            "fieldType": "Long"
         }
     ],
-    "changelogDate": "20180227104452",
+    "changelogDate": "20180302045011",
     "entityTableName": "wechat_order",
     "dto": "mapstruct",
     "pagination": "pagination",

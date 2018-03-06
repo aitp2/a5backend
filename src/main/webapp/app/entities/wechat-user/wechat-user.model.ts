@@ -9,7 +9,6 @@ export class WechatUser implements BaseEntity {
         public mobileNum?: string,
         public project?: string,
         public seat?: string,
-        public wechatWishListId?: number,
         public wechatProducts?: BaseEntity[],
     ) {
     }

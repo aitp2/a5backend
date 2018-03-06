@@ -2,14 +2,6 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipType": "one-to-one",
-            "relationshipName": "wechatWishList",
-            "otherEntityName": "wechatWishList",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "wechatUser"
-        },
-        {
             "relationshipType": "one-to-many",
             "relationshipName": "wechatProducts",
             "otherEntityName": "wechatProduct",
@@ -56,6 +48,7 @@
         },
         {
             "fieldName": "project",
+            "javadoc": "项目名称",
             "fieldType": "String",
             "fieldValidateRules": [
                 "maxlength"
@@ -64,6 +57,7 @@
         },
         {
             "fieldName": "seat",
+            "javadoc": "座位号",
             "fieldType": "String",
             "fieldValidateRules": [
                 "maxlength"
@@ -71,7 +65,7 @@
             "fieldValidateRulesMaxlength": 128
         }
     ],
-    "changelogDate": "20180227104451",
+    "changelogDate": "20180302045010",
     "entityTableName": "wechat_user",
     "dto": "mapstruct",
     "pagination": "pagination",

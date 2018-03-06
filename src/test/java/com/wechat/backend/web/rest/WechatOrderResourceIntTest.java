@@ -48,6 +48,9 @@ public class WechatOrderResourceIntTest {
     private static final BigDecimal DEFAULT_ORDER_AMOUNT = new BigDecimal(1);
     private static final BigDecimal UPDATED_ORDER_AMOUNT = new BigDecimal(2);
 
+    private static final Long DEFAULT_CUSTOMER_ID = 1L;
+    private static final Long UPDATED_CUSTOMER_ID = 2L;
+
     @Autowired
     private WechatOrderRepository wechatOrderRepository;
 
@@ -93,7 +96,8 @@ public class WechatOrderResourceIntTest {
     public static WechatOrder createEntity(EntityManager em) {
         WechatOrder wechatOrder = new WechatOrder()
             .status(DEFAULT_STATUS)
-            .orderAmount(DEFAULT_ORDER_AMOUNT);
+            .orderAmount(DEFAULT_ORDER_AMOUNT)
+            .customerId(DEFAULT_CUSTOMER_ID);
         return wechatOrder;
     }
 
@@ -120,6 +124,7 @@ public class WechatOrderResourceIntTest {
         WechatOrder testWechatOrder = wechatOrderList.get(wechatOrderList.size() - 1);
         assertThat(testWechatOrder.getStatus()).isEqualTo(DEFAULT_STATUS);
         assertThat(testWechatOrder.getOrderAmount()).isEqualTo(DEFAULT_ORDER_AMOUNT);
+        assertThat(testWechatOrder.getCustomerId()).isEqualTo(DEFAULT_CUSTOMER_ID);
     }
 
     @Test
@@ -154,7 +159,8 @@ public class WechatOrderResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(wechatOrder.getId().intValue())))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
-            .andExpect(jsonPath("$.[*].orderAmount").value(hasItem(DEFAULT_ORDER_AMOUNT.intValue())));
+            .andExpect(jsonPath("$.[*].orderAmount").value(hasItem(DEFAULT_ORDER_AMOUNT.intValue())))
+            .andExpect(jsonPath("$.[*].customerId").value(hasItem(DEFAULT_CUSTOMER_ID.intValue())));
     }
 
     @Test
@@ -169,7 +175,8 @@ public class WechatOrderResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(wechatOrder.getId().intValue()))
             .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
-            .andExpect(jsonPath("$.orderAmount").value(DEFAULT_ORDER_AMOUNT.intValue()));
+            .andExpect(jsonPath("$.orderAmount").value(DEFAULT_ORDER_AMOUNT.intValue()))
+            .andExpect(jsonPath("$.customerId").value(DEFAULT_CUSTOMER_ID.intValue()));
     }
 
     @Test
@@ -193,7 +200,8 @@ public class WechatOrderResourceIntTest {
         em.detach(updatedWechatOrder);
         updatedWechatOrder
             .status(UPDATED_STATUS)
-            .orderAmount(UPDATED_ORDER_AMOUNT);
+            .orderAmount(UPDATED_ORDER_AMOUNT)
+            .customerId(UPDATED_CUSTOMER_ID);
         WechatOrderDTO wechatOrderDTO = wechatOrderMapper.toDto(updatedWechatOrder);
 
         restWechatOrderMockMvc.perform(put("/api/wechat-orders")
@@ -207,6 +215,7 @@ public class WechatOrderResourceIntTest {
         WechatOrder testWechatOrder = wechatOrderList.get(wechatOrderList.size() - 1);
         assertThat(testWechatOrder.getStatus()).isEqualTo(UPDATED_STATUS);
         assertThat(testWechatOrder.getOrderAmount()).isEqualTo(UPDATED_ORDER_AMOUNT);
+        assertThat(testWechatOrder.getCustomerId()).isEqualTo(UPDATED_CUSTOMER_ID);
     }
 
     @Test

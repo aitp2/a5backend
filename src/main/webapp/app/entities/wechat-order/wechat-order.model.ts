@@ -5,6 +5,8 @@ export class WechatOrder implements BaseEntity {
         public id?: number,
         public status?: string,
         public orderAmount?: number,
+        public customerId?: number,
+        public wechatOrderItems?: BaseEntity[],
     ) {
     }
 }

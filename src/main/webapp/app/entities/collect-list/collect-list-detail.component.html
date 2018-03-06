@@ -1,0 +1,32 @@
+
+<div *ngIf="collectList">
+    <h2><span>Collect List</span> {{collectList.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>User Id</span></dt>
+        <dd>
+            <span>{{collectList.userId}}</span>
+        </dd>
+        <dt><span>Collect Products</span></dt>
+        <dd>
+            <span *ngFor="let collectProducts of collectList.collectProducts; let last = last">
+                <a [routerLink]="['/wechat-product', collectProducts?.id ]">{{collectProducts.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'collect-list/'+ collectList.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

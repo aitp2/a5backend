@@ -11,12 +11,13 @@ export class WechatProduct implements BaseEntity {
         public price?: number,
         public platformProduct?: boolean,
         public sellOut?: boolean,
-        public online?: boolean,
+        public goLive?: boolean,
+        public collectTimes?: number,
         public wechatUserId?: number,
-        public wechatWishListId?: number,
+        public images?: BaseEntity[],
     ) {
         this.platformProduct = false;
         this.sellOut = false;
-        this.online = false;
+        this.goLive = false;
     }
 }

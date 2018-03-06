@@ -8,13 +8,10 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity WechatUser and its DTO WechatUserDTO.
  */
-@Mapper(componentModel = "spring", uses = {WechatWishListMapper.class})
+@Mapper(componentModel = "spring", uses = {})
 public interface WechatUserMapper extends EntityMapper<WechatUserDTO, WechatUser> {
 
-    @Mapping(source = "wechatWishList.id", target = "wechatWishListId")
-    WechatUserDTO toDto(WechatUser wechatUser);
 
-    @Mapping(source = "wechatWishListId", target = "wechatWishList")
     @Mapping(target = "wechatProducts", ignore = true)
     WechatUser toEntity(WechatUserDTO wechatUserDTO);
 

@@ -8,6 +8,7 @@ import { A5BackendTestModule } from '../../../test.module';
 import { WechatWishListDialogComponent } from '../../../../../../main/webapp/app/entities/wechat-wish-list/wechat-wish-list-dialog.component';
 import { WechatWishListService } from '../../../../../../main/webapp/app/entities/wechat-wish-list/wechat-wish-list.service';
 import { WechatWishList } from '../../../../../../main/webapp/app/entities/wechat-wish-list/wechat-wish-list.model';
+import { WechatProductService } from '../../../../../../main/webapp/app/entities/wechat-product';
 import { WechatUserService } from '../../../../../../main/webapp/app/entities/wechat-user';
 
 describe('Component Tests', () => {
@@ -24,6 +25,7 @@ describe('Component Tests', () => {
                 imports: [A5BackendTestModule],
                 declarations: [WechatWishListDialogComponent],
                 providers: [
+                    WechatProductService,
                     WechatUserService,
                     WechatWishListService
                 ]
