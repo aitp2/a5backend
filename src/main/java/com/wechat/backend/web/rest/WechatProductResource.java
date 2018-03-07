@@ -96,7 +96,14 @@ public class WechatProductResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/wechat-products");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
-
+    @GetMapping("/wechat-products/user/{userId}")
+    @Timed
+    public ResponseEntity<List<WechatProductDTO>> getAllWechatProductsByUser(Pageable pageable,@PathVariable Long userId)
+    {
+        Page<WechatProductDTO> page = wechatProductService.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/wechat-products/user/{userId}");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
     /**
      * GET  /wechat-products/:id : get the "id" wechatProduct.
      *

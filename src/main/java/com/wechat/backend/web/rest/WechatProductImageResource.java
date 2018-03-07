@@ -15,19 +15,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import sun.misc.BASE64Encoder;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
@@ -81,14 +76,33 @@ public class WechatProductImageResource {
         }
         fileName=System.nanoTime()+ext;
         Files.copy(file.getInputStream(), Paths.get("upload", fileName));
-        //BASE64Encoder encoder = new BASE64Encoder();
-        //wechatProductImageDTO.setImageContent("data:image/png;base64,"+encoder.encode(file.getBytes()));
         wechatProductImageDTO.setImageUrl(fileName);
         wechatProductImageDTO.setWechatProductId(productId);
         WechatProductImageDTO result = wechatProductImageService.save(wechatProductImageDTO);
         return ResponseEntity.created(new URI("/api/wechat-product-images/upload" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
+    }
+    @PostMapping("/wechat-product-images/upload")
+    @Timed
+    public ResponseEntity<Void> createWechatProductImages(@RequestParam("files") List<MultipartFile> files, @RequestParam("productId") Long productId) throws URISyntaxException, IOException {
+        if(files==null||files.isEmpty()){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        for(MultipartFile file:files){
+            WechatProductImageDTO wechatProductImageDTO=new WechatProductImageDTO();
+            String fileName = file.getOriginalFilename();
+            String ext=fileName.substring(fileName.lastIndexOf("."),fileName.length());
+            if(!Paths.get(ROOT).toFile().exists()){
+                Files.createDirectory(Paths.get(ROOT));
+            }
+            fileName=System.nanoTime()+ext;
+            Files.copy(file.getInputStream(), Paths.get("upload", fileName));
+            wechatProductImageDTO.setImageUrl(fileName);
+            wechatProductImageDTO.setWechatProductId(productId);
+            WechatProductImageDTO result = wechatProductImageService.save(wechatProductImageDTO);
+        }
+        return ResponseEntity.ok().build();
     }
     /**
      * PUT  /wechat-product-images : Updates an existing wechatProductImage.

@@ -1,6 +1,8 @@
 package com.wechat.backend.repository;
 
 import com.wechat.backend.domain.WechatProduct;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import org.springframework.data.jpa.repository.*;
@@ -9,8 +11,7 @@ import org.springframework.data.jpa.repository.*;
 /**
  * Spring Data JPA repository for the WechatProduct entity.
  */
-@SuppressWarnings("unused")
 @Repository
 public interface WechatProductRepository extends JpaRepository<WechatProduct, Long> {
-
+    Page<WechatProduct> findAllByWechatUser(Pageable pageable, Long wechatUserId);
 }

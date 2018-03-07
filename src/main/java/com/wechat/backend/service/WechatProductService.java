@@ -59,8 +59,18 @@ public class WechatProductService {
                Hibernate.initialize(product.getImages());
             }
         }
-        return wechatProductRepository.findAll(pageable)
-            .map(wechatProductMapper::toDto);
+        return producuts.map(wechatProductMapper::toDto);
+    }
+    @Transactional(readOnly = true)
+    public Page<WechatProductDTO> findAllByUserId(Pageable pageable,Long wechatUserId) {
+        log.debug("Request to get all WechatProducts");
+        Page<WechatProduct> producuts = wechatProductRepository.findAllByWechatUser(pageable,wechatUserId);
+        for(WechatProduct product:producuts){
+            if(!Hibernate.isInitialized(product.getImages())){
+                Hibernate.initialize(product.getImages());
+            }
+        }
+        return producuts.map(wechatProductMapper::toDto);
     }
 
     /**
