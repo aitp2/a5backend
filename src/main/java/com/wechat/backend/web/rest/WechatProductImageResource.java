@@ -83,7 +83,7 @@ public class WechatProductImageResource {
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
-    @PostMapping("/wechat-product-images/upload")
+    @PostMapping("/wechat-product-images/batch/upload")
     @Timed
     public ResponseEntity<Void> createWechatProductImages(@RequestParam("files") List<MultipartFile> files, @RequestParam("productId") Long productId) throws URISyntaxException, IOException {
         if(files==null||files.isEmpty()){
