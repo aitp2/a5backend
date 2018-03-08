@@ -54,6 +54,14 @@ public class Message extends AbstractAuditingEntity implements Serializable {
     @Column(name = "user_id")
     private Long userId;
 
+    /**
+     * 头像
+     */
+    @Size(max = 1024)
+    @ApiModelProperty(value = "头像")
+    @Column(name = "icon", length = 1024)
+    private String icon;
+
     @OneToMany(mappedBy = "question")
     @JsonIgnore
     private Set<Message> feedbacks = new HashSet<>();
@@ -120,6 +128,19 @@ public class Message extends AbstractAuditingEntity implements Serializable {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public Message icon(String icon) {
+        this.icon = icon;
+        return this;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
     public Set<Message> getFeedbacks() {
@@ -189,6 +210,7 @@ public class Message extends AbstractAuditingEntity implements Serializable {
             ", relateTo=" + getRelateTo() +
             ", userName='" + getUserName() + "'" +
             ", userId=" + getUserId() +
+            ", icon='" + getIcon() + "'" +
             "}";
     }
 }

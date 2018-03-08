@@ -23,7 +23,7 @@ public class WechatProductDTO extends AbstractAuditingDTO implements Serializabl
     @Size(max = 255)
     private String productName;
 
-    @Size(max = 255)
+    @Size(max = 1024)
     private String metaDesc;
 
     @Size(max = 1024)
@@ -51,9 +51,9 @@ public class WechatProductDTO extends AbstractAuditingDTO implements Serializabl
         this.images = images;
     }
 
-    private Set<WechatProductImageDTO> images;
-
-    public Long getId() {
+    private Set<WechatProductImageDTO> images; 
+   
+	public Long getId() {
         return id;
     }
 

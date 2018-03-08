@@ -42,7 +42,7 @@
             "fieldValidateRules": [
                 "maxlength"
             ],
-            "fieldValidateRulesMaxlength": 255
+            "fieldValidateRulesMaxlength": 1024
         },
         {
             "fieldName": "image",

@@ -7,6 +7,7 @@ export class Message implements BaseEntity {
         public relateTo?: number,
         public userName?: string,
         public userId?: number,
+        public icon?: string,
         public feedbacks?: BaseEntity[],
         public questionId?: number,
     ) {

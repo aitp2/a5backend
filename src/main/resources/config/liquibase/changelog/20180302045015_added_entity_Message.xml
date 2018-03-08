@@ -38,6 +38,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="icon" type="varchar(1024)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="question_id" type="bigint">
                 <constraints nullable="true" />
             </column>
@@ -48,7 +52,7 @@
     </changeSet>
     
     <!-- Added the entity audit columns -->
-    <changeSet id="20180302045247-audit-1" author="jhipster-entity-audit">
+    <changeSet id="20180308071817-audit-1" author="jhipster-entity-audit">
         <addColumn tableName="message">
             <column name="created_by" type="varchar(50)">
                 <constraints nullable="false"/>

@@ -40,7 +40,7 @@ entity WechatProduct {
   /** 产品编码，业务字段*/
   productName String maxlength(255) required,
   /**产品构成描述 */
-  metaDesc String maxlength(255),
+  metaDesc String maxlength(1024),
   /**产品图片 */
   image String maxlength(1024),
   /** 原始价格*/
@@ -75,7 +75,9 @@ entity Message{
     /** 用户昵称*/
 	userName String maxlength(128),
     /** 评论人的ID*/
-    userId Long
+    userId Long,
+	/** 头像*/
+	icon String maxlength(1024)
 }
 relationship OneToMany {
    WechatOrder{wechatOrderItems} to WechatOrderItem{wechatOrder}

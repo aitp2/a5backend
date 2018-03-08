@@ -24,6 +24,9 @@ public class MessageDTO extends AbstractAuditingDTO implements Serializable {
 
     private Long userId;
 
+    @Size(max = 1024)
+    private String icon;
+
     private Long questionId;
 
     private Set<MessageDTO> feedbacks;
@@ -35,7 +38,6 @@ public class MessageDTO extends AbstractAuditingDTO implements Serializable {
     public void setFeedbacks(Set<MessageDTO> feedbacks) {
         this.feedbacks = feedbacks;
     }
-
     public Long getId() {
         return id;
     }
@@ -76,6 +78,14 @@ public class MessageDTO extends AbstractAuditingDTO implements Serializable {
         this.userId = userId;
     }
 
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
     public Long getQuestionId() {
         return questionId;
     }
@@ -113,6 +123,7 @@ public class MessageDTO extends AbstractAuditingDTO implements Serializable {
             ", relateTo=" + getRelateTo() +
             ", userName='" + getUserName() + "'" +
             ", userId=" + getUserId() +
+            ", icon='" + getIcon() + "'" +
             "}";
     }
 }

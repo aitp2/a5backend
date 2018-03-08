@@ -48,9 +48,9 @@ public class WechatProduct extends AbstractAuditingEntity implements Serializabl
     /**
      * 产品构成描述
      */
-    @Size(max = 255)
+    @Size(max = 1024)
     @ApiModelProperty(value = "产品构成描述")
-    @Column(name = "meta_desc", length = 255)
+    @Column(name = "meta_desc", length = 1024)
     private String metaDesc;
 
     /**

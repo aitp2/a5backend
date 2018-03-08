@@ -28,7 +28,8 @@
     "testFrameworks": [],
     "jhiPrefix": "jhi",
     "otherModules": [],
-    "enableTranslation": false
+    "enableTranslation": false,
+    "enableHibernateCache": false
   },
   "generator-jhipster-entity-audit": {
     "auditFramework": "custom"

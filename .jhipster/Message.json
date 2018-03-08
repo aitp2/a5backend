@@ -42,6 +42,15 @@
             "fieldName": "userId",
             "javadoc": "评论人的ID",
             "fieldType": "Long"
+        },
+        {
+            "fieldName": "icon",
+            "javadoc": "头像",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 1024
         }
     ],
     "changelogDate": "20180302045015",

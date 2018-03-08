@@ -30,7 +30,7 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="meta_desc" type="varchar(255)">
+            <column name="meta_desc" type="varchar(1024)">
                 <constraints nullable="true" />
             </column>
 
@@ -75,11 +75,11 @@
             <column name="go_live" type="boolean"/>
             <column name="sell_out" type="boolean"/>
             <column name="platform_product" type="boolean"/>
-        </loadData>
+        </loadData>   
     </changeSet>
-
+    
     <!-- Added the entity audit columns -->
-    <changeSet id="20180305080310-audit-1" author="jhipster-entity-audit">
+    <changeSet id="20180308071817-audit-1" author="jhipster-entity-audit">
         <addColumn tableName="wechat_product">
             <column name="created_by" type="varchar(50)">
                 <constraints nullable="false"/>

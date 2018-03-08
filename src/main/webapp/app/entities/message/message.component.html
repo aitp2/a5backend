@@ -21,6 +21,7 @@
             <th jhiSortBy="relateTo"><span>Relate To</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="userName"><span>User Name</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="userId"><span>User Id</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="icon"><span>Icon</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="questionId"><span>Question</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
@@ -32,6 +33,7 @@
                 <td>{{message.relateTo}}</td>
                 <td>{{message.userName}}</td>
                 <td>{{message.userId}}</td>
+                <td>{{message.icon}}</td>
                 <td>
                     <div *ngIf="message.questionId">
                         <a [routerLink]="['../message', message.questionId  ]" >{{message.questionId}}</a>

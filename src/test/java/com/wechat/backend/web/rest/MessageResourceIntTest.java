@@ -53,6 +53,9 @@ public class MessageResourceIntTest {
     private static final Long DEFAULT_USER_ID = 1L;
     private static final Long UPDATED_USER_ID = 2L;
 
+    private static final String DEFAULT_ICON = "AAAAAAAAAA";
+    private static final String UPDATED_ICON = "BBBBBBBBBB";
+
     @Autowired
     private MessageRepository messageRepository;
 
@@ -100,7 +103,8 @@ public class MessageResourceIntTest {
             .content(DEFAULT_CONTENT)
             .relateTo(DEFAULT_RELATE_TO)
             .userName(DEFAULT_USER_NAME)
-            .userId(DEFAULT_USER_ID);
+            .userId(DEFAULT_USER_ID)
+            .icon(DEFAULT_ICON);
         return message;
     }
 
@@ -129,6 +133,7 @@ public class MessageResourceIntTest {
         assertThat(testMessage.getRelateTo()).isEqualTo(DEFAULT_RELATE_TO);
         assertThat(testMessage.getUserName()).isEqualTo(DEFAULT_USER_NAME);
         assertThat(testMessage.getUserId()).isEqualTo(DEFAULT_USER_ID);
+        assertThat(testMessage.getIcon()).isEqualTo(DEFAULT_ICON);
     }
 
     @Test
@@ -165,7 +170,8 @@ public class MessageResourceIntTest {
             .andExpect(jsonPath("$.[*].content").value(hasItem(DEFAULT_CONTENT.toString())))
             .andExpect(jsonPath("$.[*].relateTo").value(hasItem(DEFAULT_RELATE_TO.intValue())))
             .andExpect(jsonPath("$.[*].userName").value(hasItem(DEFAULT_USER_NAME.toString())))
-            .andExpect(jsonPath("$.[*].userId").value(hasItem(DEFAULT_USER_ID.intValue())));
+            .andExpect(jsonPath("$.[*].userId").value(hasItem(DEFAULT_USER_ID.intValue())))
+            .andExpect(jsonPath("$.[*].icon").value(hasItem(DEFAULT_ICON.toString())));
     }
 
     @Test
@@ -182,7 +188,8 @@ public class MessageResourceIntTest {
             .andExpect(jsonPath("$.content").value(DEFAULT_CONTENT.toString()))
             .andExpect(jsonPath("$.relateTo").value(DEFAULT_RELATE_TO.intValue()))
             .andExpect(jsonPath("$.userName").value(DEFAULT_USER_NAME.toString()))
-            .andExpect(jsonPath("$.userId").value(DEFAULT_USER_ID.intValue()));
+            .andExpect(jsonPath("$.userId").value(DEFAULT_USER_ID.intValue()))
+            .andExpect(jsonPath("$.icon").value(DEFAULT_ICON.toString()));
     }
 
     @Test
@@ -208,7 +215,8 @@ public class MessageResourceIntTest {
             .content(UPDATED_CONTENT)
             .relateTo(UPDATED_RELATE_TO)
             .userName(UPDATED_USER_NAME)
-            .userId(UPDATED_USER_ID);
+            .userId(UPDATED_USER_ID)
+            .icon(UPDATED_ICON);
         MessageDTO messageDTO = messageMapper.toDto(updatedMessage);
 
         restMessageMockMvc.perform(put("/api/messages")
@@ -224,6 +232,7 @@ public class MessageResourceIntTest {
         assertThat(testMessage.getRelateTo()).isEqualTo(UPDATED_RELATE_TO);
         assertThat(testMessage.getUserName()).isEqualTo(UPDATED_USER_NAME);
         assertThat(testMessage.getUserId()).isEqualTo(UPDATED_USER_ID);
+        assertThat(testMessage.getIcon()).isEqualTo(UPDATED_ICON);
     }
 
     @Test
