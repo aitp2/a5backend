@@ -53,7 +53,7 @@ public class WechatProductService {
     @Transactional(readOnly = true)
     public Page<WechatProductDTO> findAll(Pageable pageable) {
         log.debug("Request to get all WechatProducts");
-        Page<WechatProduct> producuts = wechatProductRepository.findAll(pageable);
+        Page<WechatProduct> producuts = wechatProductRepository.findAllBySellOutIsFalse(pageable);
         for(WechatProduct product:producuts){
             if(!Hibernate.isInitialized(product.getImages())){
                Hibernate.initialize(product.getImages());

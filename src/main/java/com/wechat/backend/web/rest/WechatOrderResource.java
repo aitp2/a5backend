@@ -1,7 +1,12 @@
 package com.wechat.backend.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.wechat.backend.domain.WechatOrderItem;
+import com.wechat.backend.service.WechatOrderItemService;
 import com.wechat.backend.service.WechatOrderService;
+import com.wechat.backend.service.WechatProductService;
+import com.wechat.backend.service.dto.WechatOrderItemDTO;
+import com.wechat.backend.service.dto.WechatProductDTO;
 import com.wechat.backend.web.rest.errors.BadRequestAlertException;
 import com.wechat.backend.web.rest.util.HeaderUtil;
 import com.wechat.backend.web.rest.util.PaginationUtil;
@@ -35,9 +40,12 @@ public class WechatOrderResource {
     private static final String ENTITY_NAME = "wechatOrder";
 
     private final WechatOrderService wechatOrderService;
-
-    public WechatOrderResource(WechatOrderService wechatOrderService) {
+    private final WechatOrderItemService wechatOrderItemService;
+    private final WechatProductService wechatProductService;
+    public WechatOrderResource(WechatOrderService wechatOrderService,WechatOrderItemService wechatOrderItemService,WechatProductService wechatProductService) {
         this.wechatOrderService = wechatOrderService;
+        this.wechatOrderItemService=wechatOrderItemService;
+        this.wechatProductService=wechatProductService;
     }
 
     /**
@@ -54,7 +62,19 @@ public class WechatOrderResource {
         if (wechatOrderDTO.getId() != null) {
             throw new BadRequestAlertException("A new wechatOrder cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        wechatOrderDTO.setStatus("0");
         WechatOrderDTO result = wechatOrderService.save(wechatOrderDTO);
+
+        for(WechatOrderItemDTO wechatOrderItem:wechatOrderDTO.getWechatOrderItems()){
+            WechatProductDTO wechatProductDTO=wechatProductService.findOne(wechatOrderItem.getProductId());
+            if(wechatProductDTO.isSellOut()){
+                throw new BadRequestAlertException("产品已售出", ENTITY_NAME, "产品已售出");
+            }
+            wechatProductDTO.setSellOut(Boolean.TRUE);
+            wechatProductService.save(wechatProductDTO);
+            wechatOrderItem.setWechatOrderId(result.getId());
+            wechatOrderItemService.save(wechatOrderItem);
+        }
         return ResponseEntity.created(new URI("/api/wechat-orders/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -96,7 +116,16 @@ public class WechatOrderResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/wechat-orders");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
+    @GetMapping("/wechat-orders/mine/{userId}")
+    @Timed
+    public ResponseEntity<List<WechatOrderDTO>> getAllWechatOrdersByUser(Pageable pageable,@PathVariable Long userId) {
+        log.debug("REST request to get a page of WechatOrders");
 
+
+        Page<WechatOrderDTO> page = wechatOrderService.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/wechat-orders");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
     /**
      * GET  /wechat-orders/:id : get the "id" wechatOrder.
      *

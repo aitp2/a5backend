@@ -4,7 +4,9 @@ import com.wechat.backend.A5BackendApp;
 
 import com.wechat.backend.domain.WechatOrder;
 import com.wechat.backend.repository.WechatOrderRepository;
+import com.wechat.backend.service.WechatOrderItemService;
 import com.wechat.backend.service.WechatOrderService;
+import com.wechat.backend.service.WechatProductService;
 import com.wechat.backend.service.dto.WechatOrderDTO;
 import com.wechat.backend.service.mapper.WechatOrderMapper;
 import com.wechat.backend.web.rest.errors.ExceptionTranslator;
@@ -59,7 +61,10 @@ public class WechatOrderResourceIntTest {
 
     @Autowired
     private WechatOrderService wechatOrderService;
-
+    @Autowired
+    private WechatOrderItemService wechatOrderItemService;
+    @Autowired
+    private WechatProductService wechatProductService;
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
@@ -79,7 +84,7 @@ public class WechatOrderResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final WechatOrderResource wechatOrderResource = new WechatOrderResource(wechatOrderService);
+        final WechatOrderResource wechatOrderResource = new WechatOrderResource(wechatOrderService,wechatOrderItemService,wechatProductService);
         this.restWechatOrderMockMvc = MockMvcBuilders.standaloneSetup(wechatOrderResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

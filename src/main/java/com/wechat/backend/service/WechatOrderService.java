@@ -4,6 +4,7 @@ import com.wechat.backend.domain.WechatOrder;
 import com.wechat.backend.repository.WechatOrderRepository;
 import com.wechat.backend.service.dto.WechatOrderDTO;
 import com.wechat.backend.service.mapper.WechatOrderMapper;
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -55,7 +56,17 @@ public class WechatOrderService {
         return wechatOrderRepository.findAll(pageable)
             .map(wechatOrderMapper::toDto);
     }
-
+    @Transactional(readOnly = true)
+    public Page<WechatOrderDTO> findAllByUserId(Pageable pageable,Long wechatUserId) {
+        log.debug("Request to get all WechatOrders");
+        Page<WechatOrder> wechatOrders= wechatOrderRepository.findAllByCustomerId(pageable,wechatUserId);
+        for(WechatOrder wechatOrder:wechatOrders){
+            if(!Hibernate.isInitialized(wechatOrder.getWechatOrderItems())){
+                Hibernate.initialize(wechatOrder.getWechatOrderItems());
+            }
+        }
+        return wechatOrders.map(wechatOrderMapper::toDto);
+    }
     /**
      * Get one wechatOrder by id.
      *

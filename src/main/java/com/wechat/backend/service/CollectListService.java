@@ -67,7 +67,7 @@ public class CollectListService {
     public CollectListDTO findOne(Long id) {
         log.debug("Request to get CollectList : {}", id);
         CollectList collectList = collectListRepository.findOneWithEagerRelationships(id);
-        if(!Hibernate.isInitialized(collectList.getCollectProducts())){
+        if(collectList!=null&& !Hibernate.isInitialized(collectList.getCollectProducts())){
             Hibernate.initialize(collectList.getCollectProducts());
         }
         return collectListMapper.toDto(collectList);
