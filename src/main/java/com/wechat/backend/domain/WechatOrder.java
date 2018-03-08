@@ -47,6 +47,13 @@ public class WechatOrder extends AbstractAuditingEntity implements Serializable 
     @Column(name = "customer_id")
     private Long customerId;
 
+    /**
+     * 出售者ID
+     */
+    @ApiModelProperty(value = "出售者ID")
+    @Column(name = "saler_id")
+    private Long salerId;
+
     @OneToMany(mappedBy = "wechatOrder")
     private Set<WechatOrderItem> wechatOrderItems = new HashSet<>();
 
@@ -96,6 +103,19 @@ public class WechatOrder extends AbstractAuditingEntity implements Serializable 
 
     public void setCustomerId(Long customerId) {
         this.customerId = customerId;
+    }
+
+    public Long getSalerId() {
+        return salerId;
+    }
+
+    public WechatOrder salerId(Long salerId) {
+        this.salerId = salerId;
+        return this;
+    }
+
+    public void setSalerId(Long salerId) {
+        this.salerId = salerId;
     }
 
     public Set<WechatOrderItem> getWechatOrderItems() {
@@ -151,6 +171,7 @@ public class WechatOrder extends AbstractAuditingEntity implements Serializable 
             ", status='" + getStatus() + "'" +
             ", orderAmount=" + getOrderAmount() +
             ", customerId=" + getCustomerId() +
+            ", salerId=" + getSalerId() +
             "}";
     }
 }

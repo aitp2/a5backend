@@ -1,6 +1,7 @@
 package com.wechat.backend.service.dto;
 
 
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -21,6 +22,9 @@ public class WechatOrderItemDTO implements Serializable {
     private BigDecimal retailPrice;
 
     private Long productId;
+
+    @Size(max = 255)
+    private String productName;
 
     private Long wechatOrderId;
 
@@ -64,6 +68,14 @@ public class WechatOrderItemDTO implements Serializable {
         this.productId = productId;
     }
 
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
     public Long getWechatOrderId() {
         return wechatOrderId;
     }
@@ -101,6 +113,7 @@ public class WechatOrderItemDTO implements Serializable {
             ", quantity=" + getQuantity() +
             ", retailPrice=" + getRetailPrice() +
             ", productId=" + getProductId() +
+            ", productName='" + getProductName() + "'" +
             "}";
     }
 }

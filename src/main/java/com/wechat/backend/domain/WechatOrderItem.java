@@ -3,6 +3,7 @@ package com.wechat.backend.domain;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -48,6 +49,14 @@ public class WechatOrderItem implements Serializable {
     @ApiModelProperty(value = "商品Id")
     @Column(name = "product_id")
     private Long productId;
+
+    /**
+     * 产品名称，业务字段
+     */
+    @Size(max = 255)
+    @ApiModelProperty(value = "产品名称，业务字段")
+    @Column(name = "product_name", length = 255)
+    private String productName;
 
     @ManyToOne
     private WechatOrder wechatOrder;
@@ -113,6 +122,19 @@ public class WechatOrderItem implements Serializable {
         this.productId = productId;
     }
 
+    public String getProductName() {
+        return productName;
+    }
+
+    public WechatOrderItem productName(String productName) {
+        this.productName = productName;
+        return this;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
     public WechatOrder getWechatOrder() {
         return wechatOrder;
     }
@@ -155,6 +177,7 @@ public class WechatOrderItem implements Serializable {
             ", quantity=" + getQuantity() +
             ", retailPrice=" + getRetailPrice() +
             ", productId=" + getProductId() +
+            ", productName='" + getProductName() + "'" +
             "}";
     }
 }

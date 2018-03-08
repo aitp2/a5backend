@@ -27,6 +27,11 @@
             "fieldName": "customerId",
             "javadoc": "购买者的ID",
             "fieldType": "Long"
+        },
+        {
+            "fieldName": "salerId",
+            "javadoc": "出售者ID",
+            "fieldType": "Long"
         }
     ],
     "changelogDate": "20180302045011",

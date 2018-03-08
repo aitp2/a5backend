@@ -54,6 +54,9 @@ public class WechatOrderItemResourceIntTest {
     private static final Long DEFAULT_PRODUCT_ID = 1L;
     private static final Long UPDATED_PRODUCT_ID = 2L;
 
+    private static final String DEFAULT_PRODUCT_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_PRODUCT_NAME = "BBBBBBBBBB";
+
     @Autowired
     private WechatOrderItemRepository wechatOrderItemRepository;
 
@@ -101,7 +104,8 @@ public class WechatOrderItemResourceIntTest {
             .price(DEFAULT_PRICE)
             .quantity(DEFAULT_QUANTITY)
             .retailPrice(DEFAULT_RETAIL_PRICE)
-            .productId(DEFAULT_PRODUCT_ID);
+            .productId(DEFAULT_PRODUCT_ID)
+            .productName(DEFAULT_PRODUCT_NAME);
         return wechatOrderItem;
     }
 
@@ -130,6 +134,7 @@ public class WechatOrderItemResourceIntTest {
         assertThat(testWechatOrderItem.getQuantity()).isEqualTo(DEFAULT_QUANTITY);
         assertThat(testWechatOrderItem.getRetailPrice()).isEqualTo(DEFAULT_RETAIL_PRICE);
         assertThat(testWechatOrderItem.getProductId()).isEqualTo(DEFAULT_PRODUCT_ID);
+        assertThat(testWechatOrderItem.getProductName()).isEqualTo(DEFAULT_PRODUCT_NAME);
     }
 
     @Test
@@ -166,7 +171,8 @@ public class WechatOrderItemResourceIntTest {
             .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.intValue())))
             .andExpect(jsonPath("$.[*].quantity").value(hasItem(DEFAULT_QUANTITY)))
             .andExpect(jsonPath("$.[*].retailPrice").value(hasItem(DEFAULT_RETAIL_PRICE.intValue())))
-            .andExpect(jsonPath("$.[*].productId").value(hasItem(DEFAULT_PRODUCT_ID.intValue())));
+            .andExpect(jsonPath("$.[*].productId").value(hasItem(DEFAULT_PRODUCT_ID.intValue())))
+            .andExpect(jsonPath("$.[*].productName").value(hasItem(DEFAULT_PRODUCT_NAME.toString())));
     }
 
     @Test
@@ -183,7 +189,8 @@ public class WechatOrderItemResourceIntTest {
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.intValue()))
             .andExpect(jsonPath("$.quantity").value(DEFAULT_QUANTITY))
             .andExpect(jsonPath("$.retailPrice").value(DEFAULT_RETAIL_PRICE.intValue()))
-            .andExpect(jsonPath("$.productId").value(DEFAULT_PRODUCT_ID.intValue()));
+            .andExpect(jsonPath("$.productId").value(DEFAULT_PRODUCT_ID.intValue()))
+            .andExpect(jsonPath("$.productName").value(DEFAULT_PRODUCT_NAME.toString()));
     }
 
     @Test
@@ -209,7 +216,8 @@ public class WechatOrderItemResourceIntTest {
             .price(UPDATED_PRICE)
             .quantity(UPDATED_QUANTITY)
             .retailPrice(UPDATED_RETAIL_PRICE)
-            .productId(UPDATED_PRODUCT_ID);
+            .productId(UPDATED_PRODUCT_ID)
+            .productName(UPDATED_PRODUCT_NAME);
         WechatOrderItemDTO wechatOrderItemDTO = wechatOrderItemMapper.toDto(updatedWechatOrderItem);
 
         restWechatOrderItemMockMvc.perform(put("/api/wechat-order-items")
@@ -225,6 +233,7 @@ public class WechatOrderItemResourceIntTest {
         assertThat(testWechatOrderItem.getQuantity()).isEqualTo(UPDATED_QUANTITY);
         assertThat(testWechatOrderItem.getRetailPrice()).isEqualTo(UPDATED_RETAIL_PRICE);
         assertThat(testWechatOrderItem.getProductId()).isEqualTo(UPDATED_PRODUCT_ID);
+        assertThat(testWechatOrderItem.getProductName()).isEqualTo(UPDATED_PRODUCT_NAME);
     }
 
     @Test

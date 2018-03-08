@@ -53,6 +53,9 @@ public class WechatOrderResourceIntTest {
     private static final Long DEFAULT_CUSTOMER_ID = 1L;
     private static final Long UPDATED_CUSTOMER_ID = 2L;
 
+    private static final Long DEFAULT_SALER_ID = 1L;
+    private static final Long UPDATED_SALER_ID = 2L;
+
     @Autowired
     private WechatOrderRepository wechatOrderRepository;
 
@@ -61,12 +64,12 @@ public class WechatOrderResourceIntTest {
 
     @Autowired
     private WechatOrderService wechatOrderService;
+
     @Autowired
     private WechatOrderItemService wechatOrderItemService;
     @Autowired
     private WechatProductService wechatProductService;
-    @Autowired
-    private MappingJackson2HttpMessageConverter jacksonMessageConverter;
+    @Autowired    private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
     private PageableHandlerMethodArgumentResolver pageableArgumentResolver;
@@ -102,7 +105,8 @@ public class WechatOrderResourceIntTest {
         WechatOrder wechatOrder = new WechatOrder()
             .status(DEFAULT_STATUS)
             .orderAmount(DEFAULT_ORDER_AMOUNT)
-            .customerId(DEFAULT_CUSTOMER_ID);
+            .customerId(DEFAULT_CUSTOMER_ID)
+            .salerId(DEFAULT_SALER_ID);
         return wechatOrder;
     }
 
@@ -130,6 +134,7 @@ public class WechatOrderResourceIntTest {
         assertThat(testWechatOrder.getStatus()).isEqualTo(DEFAULT_STATUS);
         assertThat(testWechatOrder.getOrderAmount()).isEqualTo(DEFAULT_ORDER_AMOUNT);
         assertThat(testWechatOrder.getCustomerId()).isEqualTo(DEFAULT_CUSTOMER_ID);
+        assertThat(testWechatOrder.getSalerId()).isEqualTo(DEFAULT_SALER_ID);
     }
 
     @Test
@@ -165,7 +170,8 @@ public class WechatOrderResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(wechatOrder.getId().intValue())))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
             .andExpect(jsonPath("$.[*].orderAmount").value(hasItem(DEFAULT_ORDER_AMOUNT.intValue())))
-            .andExpect(jsonPath("$.[*].customerId").value(hasItem(DEFAULT_CUSTOMER_ID.intValue())));
+            .andExpect(jsonPath("$.[*].customerId").value(hasItem(DEFAULT_CUSTOMER_ID.intValue())))
+            .andExpect(jsonPath("$.[*].salerId").value(hasItem(DEFAULT_SALER_ID.intValue())));
     }
 
     @Test
@@ -181,7 +187,8 @@ public class WechatOrderResourceIntTest {
             .andExpect(jsonPath("$.id").value(wechatOrder.getId().intValue()))
             .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
             .andExpect(jsonPath("$.orderAmount").value(DEFAULT_ORDER_AMOUNT.intValue()))
-            .andExpect(jsonPath("$.customerId").value(DEFAULT_CUSTOMER_ID.intValue()));
+            .andExpect(jsonPath("$.customerId").value(DEFAULT_CUSTOMER_ID.intValue()))
+            .andExpect(jsonPath("$.salerId").value(DEFAULT_SALER_ID.intValue()));
     }
 
     @Test
@@ -206,7 +213,8 @@ public class WechatOrderResourceIntTest {
         updatedWechatOrder
             .status(UPDATED_STATUS)
             .orderAmount(UPDATED_ORDER_AMOUNT)
-            .customerId(UPDATED_CUSTOMER_ID);
+            .customerId(UPDATED_CUSTOMER_ID)
+            .salerId(UPDATED_SALER_ID);
         WechatOrderDTO wechatOrderDTO = wechatOrderMapper.toDto(updatedWechatOrder);
 
         restWechatOrderMockMvc.perform(put("/api/wechat-orders")
@@ -221,6 +229,7 @@ public class WechatOrderResourceIntTest {
         assertThat(testWechatOrder.getStatus()).isEqualTo(UPDATED_STATUS);
         assertThat(testWechatOrder.getOrderAmount()).isEqualTo(UPDATED_ORDER_AMOUNT);
         assertThat(testWechatOrder.getCustomerId()).isEqualTo(UPDATED_CUSTOMER_ID);
+        assertThat(testWechatOrder.getSalerId()).isEqualTo(UPDATED_SALER_ID);
     }
 
     @Test

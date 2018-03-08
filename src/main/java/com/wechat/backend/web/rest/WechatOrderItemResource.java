@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -48,7 +49,7 @@ public class WechatOrderItemResource {
      */
     @PostMapping("/wechat-order-items")
     @Timed
-    public ResponseEntity<WechatOrderItemDTO> createWechatOrderItem(@RequestBody WechatOrderItemDTO wechatOrderItemDTO) throws URISyntaxException {
+    public ResponseEntity<WechatOrderItemDTO> createWechatOrderItem(@Valid @RequestBody WechatOrderItemDTO wechatOrderItemDTO) throws URISyntaxException {
         log.debug("REST request to save WechatOrderItem : {}", wechatOrderItemDTO);
         if (wechatOrderItemDTO.getId() != null) {
             throw new BadRequestAlertException("A new wechatOrderItem cannot already have an ID", ENTITY_NAME, "idexists");
@@ -70,7 +71,7 @@ public class WechatOrderItemResource {
      */
     @PutMapping("/wechat-order-items")
     @Timed
-    public ResponseEntity<WechatOrderItemDTO> updateWechatOrderItem(@RequestBody WechatOrderItemDTO wechatOrderItemDTO) throws URISyntaxException {
+    public ResponseEntity<WechatOrderItemDTO> updateWechatOrderItem(@Valid @RequestBody WechatOrderItemDTO wechatOrderItemDTO) throws URISyntaxException {
         log.debug("REST request to update WechatOrderItem : {}", wechatOrderItemDTO);
         if (wechatOrderItemDTO.getId() == null) {
             return createWechatOrderItem(wechatOrderItemDTO);

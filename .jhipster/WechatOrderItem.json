@@ -28,6 +28,15 @@
             "fieldName": "productId",
             "javadoc": "商品Id",
             "fieldType": "Long"
+        },
+        {
+            "fieldName": "productName",
+            "javadoc": "产品名称，业务字段",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 255
         }
     ],
     "changelogDate": "20180302045012",

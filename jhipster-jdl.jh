@@ -19,7 +19,9 @@ entity WechatOrder {
     /** 订单总金额*/
     orderAmount BigDecimal,
     /** 购买者的ID*/
-    customerId Long
+    customerId Long,
+	/** 出售者ID*/
+	salerId Long
 }
 
 entity WechatOrderItem{
@@ -30,7 +32,9 @@ entity WechatOrderItem{
 	/** 零售价格 */
     retailPrice BigDecimal ,
 	/** 商品Id */
-	productId Long
+	productId Long,
+	/** 产品名称，业务字段*/
+	productName String maxlength(255) 
 }
 // an ignored comment
 /** not an ignored comment */

@@ -34,13 +34,17 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="saler_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         
     </changeSet>
     
     <!-- Added the entity audit columns -->
-    <changeSet id="20180302045247-audit-1" author="jhipster-entity-audit">
+    <changeSet id="20180308133358-audit-1" author="jhipster-entity-audit">
         <addColumn tableName="wechat_order">
             <column name="created_by" type="varchar(50)">
                 <constraints nullable="false"/>
