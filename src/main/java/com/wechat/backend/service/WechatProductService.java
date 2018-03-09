@@ -1,6 +1,7 @@
 package com.wechat.backend.service;
 
 import com.wechat.backend.domain.WechatProduct;
+import com.wechat.backend.domain.WechatUser;
 import com.wechat.backend.repository.WechatProductRepository;
 import com.wechat.backend.service.dto.WechatProductDTO;
 import com.wechat.backend.service.mapper.WechatProductMapper;
@@ -64,7 +65,9 @@ public class WechatProductService {
     @Transactional(readOnly = true)
     public Page<WechatProductDTO> findAllByUserId(Pageable pageable,Long wechatUserId) {
         log.debug("Request to get all WechatProducts");
-        Page<WechatProduct> producuts = wechatProductRepository.findAllByWechatUser(pageable,wechatUserId);
+        WechatUser wechatUser=new WechatUser();
+        wechatUser.setId(wechatUserId);
+        Page<WechatProduct> producuts = wechatProductRepository.findAllByWechatUser(pageable,wechatUser);
         for(WechatProduct product:producuts){
             if(!Hibernate.isInitialized(product.getImages())){
                 Hibernate.initialize(product.getImages());

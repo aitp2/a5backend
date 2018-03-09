@@ -54,6 +54,7 @@ public class WechatProductResource {
         if (wechatProductDTO.getId() != null) {
             throw new BadRequestAlertException("A new wechatProduct cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        wechatProductDTO.setSellOut(Boolean.FALSE);
         WechatProductDTO result = wechatProductService.save(wechatProductDTO);
         return ResponseEntity.created(new URI("/api/wechat-products/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
@@ -100,7 +101,7 @@ public class WechatProductResource {
     @Timed
     public ResponseEntity<List<WechatProductDTO>> getAllWechatProductsByUser(Pageable pageable,@PathVariable Long userId)
     {
-        Page<WechatProductDTO> page = wechatProductService.findAll(pageable);
+        Page<WechatProductDTO> page = wechatProductService.findAllByUserId(pageable,userId);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/wechat-products/user/{userId}");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
