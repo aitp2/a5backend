@@ -54,7 +54,8 @@ public class WechatProductService {
     @Transactional(readOnly = true)
     public Page<WechatProductDTO> findAll(Pageable pageable) {
         log.debug("Request to get all WechatProducts");
-        Page<WechatProduct> producuts = wechatProductRepository.findAllBySellOutIsFalse(pageable);
+//        Page<WechatProduct> producuts = wechatProductRepository.findAllBySellOutIsFalse(pageable);
+        Page<WechatProduct> producuts = wechatProductRepository.findAll(pageable);
         for(WechatProduct product:producuts){
             if(!Hibernate.isInitialized(product.getImages())){
                Hibernate.initialize(product.getImages());
@@ -62,6 +63,7 @@ public class WechatProductService {
         }
         return producuts.map(wechatProductMapper::toDto);
     }
+
     @Transactional(readOnly = true)
     public Page<WechatProductDTO> findAllByUserId(Pageable pageable,Long wechatUserId) {
         log.debug("Request to get all WechatProducts");

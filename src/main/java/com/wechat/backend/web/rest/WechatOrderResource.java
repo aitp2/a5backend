@@ -122,7 +122,7 @@ public class WechatOrderResource {
         log.debug("REST request to get a page of WechatOrders");
 
 
-        Page<WechatOrderDTO> page = wechatOrderService.findAll(pageable);
+        Page<WechatOrderDTO> page = wechatOrderService.findAllByUserId(pageable,userId);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/wechat-orders");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
