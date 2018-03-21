@@ -118,7 +118,7 @@ public class CollectListResource {
     @Timed
     public ResponseEntity<CollectListDTO> getCollectListByUser(@PathVariable Long userId) {
         log.debug("REST request to get CollectList : {}", userId);
-        CollectListDTO collectListDTO = collectListService.findOne(userId);
+        CollectListDTO collectListDTO = collectListService.findOneByUserId(userId);
         if(collectListDTO==null){
             collectListDTO=new CollectListDTO();
             collectListDTO.setUserId(userId);
