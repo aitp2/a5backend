@@ -20,5 +20,8 @@
     <include file="config/liquibase/changelog/20180302045014_added_entity_constraints_CollectList.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180302045015_added_entity_constraints_Message.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180305031111_added_entity_constraints_WechatProductImage.xml" relativeToChangelogFile="false"/>
+
+    <include file="config/liquibase/changelog/20180324_update_entity_WechatProduct.xml" relativeToChangelogFile="false"/>
+
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

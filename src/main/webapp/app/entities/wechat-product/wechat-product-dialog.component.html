@@ -75,6 +75,11 @@
                 [(ngModel)]="wechatProduct.price" />
         </div>
         <div class="form-group">
+            <label class="form-control-label" for="field_productQuantity">Product Quantity</label>
+            <input type="number" class="form-control" name="productQuantity" id="field_productQuantity"
+                [(ngModel)]="wechatProduct.productQuantity" />
+        </div>
+        <div class="form-group">
             <label class="form-control-label" for="field_platformProduct">Platform Product</label>
             <input type="checkbox" class="form-control" name="platformProduct" id="field_platformProduct"
                 [(ngModel)]="wechatProduct.platformProduct" />

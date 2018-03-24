@@ -64,6 +64,11 @@
             "fieldType": "BigDecimal"
         },
         {
+            "fieldName": "productQuantity",
+            "javadoc": "数量",
+            "fieldType": "BigDecimal"
+        },
+        {
             "fieldName": "platformProduct",
             "javadoc": "是否为平台商品",
             "fieldType": "Boolean"
@@ -90,5 +95,5 @@
     "pagination": "pagination",
     "service": "serviceClass",
     "jpaMetamodelFiltering": false,
-    "enableEntityAudit": true
+	"enableEntityAudit": true
 }

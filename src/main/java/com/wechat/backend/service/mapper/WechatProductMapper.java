@@ -12,8 +12,7 @@ import org.mapstruct.*;
 public interface WechatProductMapper extends EntityMapper<WechatProductDTO, WechatProduct> {
 
     @Mapping(source = "wechatUser.id", target = "wechatUserId")
-    @Mapping(source = "images", target = "images")
-    WechatProductDTO toDto(WechatProduct wechatProduct);
+ 	@Mapping(source = "images", target = "images")    WechatProductDTO toDto(WechatProduct wechatProduct);
 
     @Mapping(source = "wechatUserId", target = "wechatUser")
     WechatProduct toEntity(WechatProductDTO wechatProductDTO);

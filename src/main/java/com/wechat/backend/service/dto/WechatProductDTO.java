@@ -33,6 +33,8 @@ public class WechatProductDTO extends AbstractAuditingDTO implements Serializabl
 
     private BigDecimal price;
 
+    private BigDecimal productQuantity;
+
     private Boolean platformProduct;
 
     private Boolean sellOut;
@@ -42,7 +44,6 @@ public class WechatProductDTO extends AbstractAuditingDTO implements Serializabl
     private Integer collectTimes;
 
     private Long wechatUserId;
-
     public Set<WechatProductImageDTO> getImages() {
         return images;
     }
@@ -53,7 +54,7 @@ public class WechatProductDTO extends AbstractAuditingDTO implements Serializabl
 
     private Set<WechatProductImageDTO> images; 
    
-	public Long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -107,6 +108,14 @@ public class WechatProductDTO extends AbstractAuditingDTO implements Serializabl
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public BigDecimal getProductQuantity() {
+        return productQuantity;
+    }
+
+    public void setProductQuantity(BigDecimal productQuantity) {
+        this.productQuantity = productQuantity;
     }
 
     public Boolean isPlatformProduct() {
@@ -180,6 +189,7 @@ public class WechatProductDTO extends AbstractAuditingDTO implements Serializabl
             ", image='" + getImage() + "'" +
             ", originalPrice=" + getOriginalPrice() +
             ", price=" + getPrice() +
+            ", productQuantity=" + getProductQuantity() +
             ", platformProduct='" + isPlatformProduct() + "'" +
             ", sellOut='" + isSellOut() + "'" +
             ", goLive='" + isGoLive() + "'" +

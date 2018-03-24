@@ -51,6 +51,8 @@ entity WechatProduct {
   originalPrice BigDecimal,
   /** 价格*/
   price BigDecimal,
+  /**数量 */
+  productQuantity BigDecimal, 
   /** 是否为平台商品*/
   platformProduct Boolean,
   /** 是否售罄*/

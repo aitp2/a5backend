@@ -9,6 +9,7 @@ export class WechatProduct implements BaseEntity {
         public image?: string,
         public originalPrice?: number,
         public price?: number,
+        public productQuantity?: number,
         public platformProduct?: boolean,
         public sellOut?: boolean,
         public goLive?: boolean,

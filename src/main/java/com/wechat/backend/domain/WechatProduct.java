@@ -76,6 +76,13 @@ public class WechatProduct extends AbstractAuditingEntity implements Serializabl
     private BigDecimal price;
 
     /**
+     * 数量
+     */
+    @ApiModelProperty(value = "数量")
+    @Column(name = "product_quantity", precision=10, scale=2)
+    private BigDecimal productQuantity;
+
+    /**
      * 是否为平台商品
      */
     @ApiModelProperty(value = "是否为平台商品")
@@ -190,6 +197,19 @@ public class WechatProduct extends AbstractAuditingEntity implements Serializabl
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public BigDecimal getProductQuantity() {
+        return productQuantity;
+    }
+
+    public WechatProduct productQuantity(BigDecimal productQuantity) {
+        this.productQuantity = productQuantity;
+        return this;
+    }
+
+    public void setProductQuantity(BigDecimal productQuantity) {
+        this.productQuantity = productQuantity;
     }
 
     public Boolean isPlatformProduct() {
@@ -313,6 +333,7 @@ public class WechatProduct extends AbstractAuditingEntity implements Serializabl
             ", image='" + getImage() + "'" +
             ", originalPrice=" + getOriginalPrice() +
             ", price=" + getPrice() +
+            ", productQuantity=" + getProductQuantity() +
             ", platformProduct='" + isPlatformProduct() + "'" +
             ", sellOut='" + isSellOut() + "'" +
             ", goLive='" + isGoLive() + "'" +
