@@ -15,8 +15,12 @@ import org.springframework.data.jpa.repository.*;
 @Repository
 public interface WechatProductRepository extends JpaRepository<WechatProduct, Long> {
 
+    Page<WechatProduct> findAllByWechatUserAndGoLive(Pageable pageable, WechatUser wechatUser,Boolean goLive);
+
     Page<WechatProduct> findAllByWechatUser(Pageable pageable, WechatUser wechatUser);
 
     Page<WechatProduct> findAllBySellOutIsFalse(Pageable pageable);
+
+    Page<WechatProduct> findAllByGoLiveIsTrue(Pageable pageable);
 
 }
