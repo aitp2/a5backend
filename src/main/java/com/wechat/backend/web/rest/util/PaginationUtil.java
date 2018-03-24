@@ -36,6 +36,9 @@ public final class PaginationUtil {
         link += "<" + generateUri(baseUrl, lastPage, page.getSize()) + ">; rel=\"last\",";
         link += "<" + generateUri(baseUrl, 0, page.getSize()) + ">; rel=\"first\"";
         headers.add(HttpHeaders.LINK, link);
+        headers.add("totalCount", Long.toString(page.getTotalElements()));
+        headers.add("totalPage",Long.toString(page.getTotalPages()));
+        headers.add("currentPage",Long.toString(page.getNumber()));
         return headers;
     }
 
